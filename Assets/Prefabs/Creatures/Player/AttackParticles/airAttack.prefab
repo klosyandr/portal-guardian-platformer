@@ -1,0 +1,412 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7904278937401691210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4118496869325283287}
+  - component: {fileID: 3280322692934946108}
+  m_Layer: 0
+  m_Name: ChargePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4118496869325283287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904278937401691210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16, y: -0.009, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8759329623672296529}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3280322692934946108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904278937401691210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ab63bc5293d1b479ab51584820e0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 4118496869325283287}
+  _prefab: {fileID: 6697597052982990487, guid: 97e127bfcb60ac94bae9ae1a5a72dd2b, type: 3}
+--- !u!1 &8759329623672296530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8759329623672296529}
+  - component: {fileID: 8759329623672296528}
+  - component: {fileID: 8759329623672296531}
+  - component: {fileID: 8546785941875028099}
+  - component: {fileID: 1491185983834579367}
+  - component: {fileID: 1985563344560938349}
+  - component: {fileID: 7517133127434752765}
+  - component: {fileID: 9120917311368806005}
+  - component: {fileID: 357849800101885384}
+  - component: {fileID: 3069424278893030858}
+  m_Layer: 0
+  m_Name: airAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8759329623672296529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.8190017, y: 0.21900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4118496869325283287}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8759329623672296528
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -52816561
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 3ec0b9b4f1196984e9e80fae4acef7b1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.44, y: 0.32}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &8759329623672296531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c53e4d90009d242bdedf88a7a34f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frameRate: 10
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _clips:
+  - _name: idle
+    _sprites:
+    - {fileID: 21300000, guid: 3ec0b9b4f1196984e9e80fae4acef7b1, type: 3}
+    - {fileID: 21300000, guid: 9094ac421335aaf40a531b5ff2140f2b, type: 3}
+    - {fileID: 21300000, guid: 274f6f78fba26d54c868f161ea5f0916, type: 3}
+    - {fileID: 21300000, guid: f01e9c27798a35747a4d0640f55191a7, type: 3}
+    _isLoop: 0
+    _allowNextClip: 0
+    _onComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8759329623672296531}
+          m_TargetAssemblyTypeName: PixelCrew.Component.SpriteAnimation, Assembly-CSharp
+          m_MethodName: SetClip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: fly
+            m_BoolArgument: 0
+          m_CallState: 2
+  - _name: fly
+    _sprites:
+    - {fileID: 281151124, guid: a81d556c9d63ab942a008e81030b0074, type: 3}
+    - {fileID: 797636285, guid: a81d556c9d63ab942a008e81030b0074, type: 3}
+    - {fileID: 1521652828, guid: a81d556c9d63ab942a008e81030b0074, type: 3}
+    - {fileID: -391658128, guid: a81d556c9d63ab942a008e81030b0074, type: 3}
+    - {fileID: 598028287, guid: a81d556c9d63ab942a008e81030b0074, type: 3}
+    _isLoop: 1
+    _allowNextClip: 0
+    _onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  - _name: destroy
+    _sprites:
+    - {fileID: -904991408, guid: 19fda6be8ab2e764ba11613d124e2db2, type: 3}
+    - {fileID: -1312979512, guid: 19fda6be8ab2e764ba11613d124e2db2, type: 3}
+    - {fileID: -2089567351, guid: 19fda6be8ab2e764ba11613d124e2db2, type: 3}
+    - {fileID: -928189235, guid: 19fda6be8ab2e764ba11613d124e2db2, type: 3}
+    _isLoop: 0
+    _allowNextClip: 0
+    _onComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8546785941875028099}
+          m_TargetAssemblyTypeName: PixelCrew.Component.DestroyObjectComponent, Assembly-CSharp
+          m_MethodName: DestroyObject
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &8546785941875028099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43edcbe9c3aaf144d92ee89f0cc4403f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToDestoy: {fileID: 8759329623672296530}
+--- !u!114 &1491185983834579367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50d7d2dd87f2ea48b91f33a471b76eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpDelta: -2
+--- !u!114 &1985563344560938349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc274fa4d86f614bb96a36858658a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tag: Enemy
+  _layer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1985563344560938349}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8759329623672296531}
+        m_TargetAssemblyTypeName: PixelCrew.Component.SpriteAnimation, Assembly-CSharp
+        m_MethodName: SetClip
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: destroy
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1491185983834579367}
+        m_TargetAssemblyTypeName: PixelCrew.Component.ModifyHealthComponent, Assembly-CSharp
+        m_MethodName: ApplyModify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7517133127434752765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc274fa4d86f614bb96a36858658a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tag: 
+  _layer:
+    serializedVersion: 2
+    m_Bits: 576
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3280322692934946108}
+        m_TargetAssemblyTypeName: PixelCrew.Component.SpawnComponent, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 357849800101885384}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8546785941875028099}
+        m_TargetAssemblyTypeName: PixelCrew.Component.DestroyObjectComponent, Assembly-CSharp
+        m_MethodName: DestroyObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9120917311368806005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e6082c21bddc84ca044cc0393eb0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+--- !u!61 &357849800101885384
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09769058, y: 0.0210099}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 1, y: 0.5}
+    oldSize: {x: 1.375, y: 1}
+    newSize: {x: 0.44, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.305058, y: 0.19526128}
+  m_EdgeRadius: 0
+--- !u!50 &3069424278893030858
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
