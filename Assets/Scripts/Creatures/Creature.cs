@@ -1,10 +1,11 @@
-using PixelCrew.Component.Audio;
-using PixelCrew.Component.ColliderBase;
-using PixelCrew.Component.GoBased;
-using UnityEditor.UIElements;
+using System;
+using PortalGuardian.Component.Audio;
+using PortalGuardian.Component.ColliderBase;
+using PortalGuardian.Component.GoBased;
+using Unity.VisualScripting;
 using UnityEngine;
 
-namespace PixelCrew.Creatures{
+namespace PortalGuardian.Creatures{
     public class Creature : MonoBehaviour
     {
         [Header("Params")]
@@ -77,9 +78,8 @@ namespace PixelCrew.Creatures{
         protected virtual float CalculateJumpVelocity(float yVelocity){
             if(_isGrounded){
                 yVelocity = _jumpSpeed;
-                _particles.Spawn("Jump");
-                Sounds.Play("jump");
                 _direction.y = 0;
+                PlayEffects("Jump");
             }
             return yVelocity; 
         }
@@ -100,11 +100,16 @@ namespace PixelCrew.Creatures{
 
         public virtual void Attack(){
             _animator.SetTrigger(attackKey);
-            Sounds.Play("range");
+            PlayEffects("Range");
         }
 
         public void OnDoAttack(){
             _attackRange.Check();
+        }
+
+        protected void PlayEffects(string id){
+            _particles.Spawn(id);
+            Sounds.Play(id);
         }
 
     }

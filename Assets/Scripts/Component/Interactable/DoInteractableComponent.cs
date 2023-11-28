@@ -1,7 +1,8 @@
 using UnityEngine;
 
 
-namespace PixelCrew.Component.Interactaction{
+namespace PortalGuardian.Component.Interactable
+{
     public class DoInteractableComponent : MonoBehaviour
     {
         public void DoInteractable(GameObject go){

@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace PixelCrew.Component.Interactaction{
+namespace PortalGuardian.Component.Interactable
+{
     public class InteractableComponent : MonoBehaviour
     {
         [SerializeField] private UnityEvent _action;

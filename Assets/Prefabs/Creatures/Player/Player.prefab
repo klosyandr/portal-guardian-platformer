@@ -5790,8 +5790,8 @@ MonoBehaviour:
   _fallVelocity: 10
   _interactionCheck: {fileID: 4930986177232698406}
   _ladderCheck: {fileID: 5722593188720553042}
-  _airAttackCooldown:
-    _value: 1
+  _meleeAttackCooldown:
+    _value: 0
   _hitParticles: {fileID: 3029539492143932351}
   _coinsToDispose: 5
   _groundCheckPositionDelta: {x: -0.02, y: -0.31, z: 0}
@@ -5901,9 +5901,9 @@ MonoBehaviour:
     Component: {fileID: 323695989}
   - Id: Fall
     Component: {fileID: 7696298553350797912}
-  - Id: AirAttack
+  - Id: Melee
     Component: {fileID: 8943681224504462731}
-  - Id: FireAttack
+  - Id: Range
     Component: {fileID: 8187435827055193449}
 --- !u!114 &3579329255884602477
 MonoBehaviour:
@@ -5919,13 +5919,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sourse: {fileID: 3700829196955680948}
   _sounds:
-  - _id: jump
+  - _id: Jump
     _clip: {fileID: 8300000, guid: 4534c19a1b525964d946b08df8256cf1, type: 3}
-  - _id: melee
+  - _id: Melee
     _clip: {fileID: 8300000, guid: 54559904667e5bf4c8f6ba08af5e6150, type: 3}
-  - _id: range
+  - _id: Range
     _clip: {fileID: 8300000, guid: 30925e7a53f62674998c75d767bdc6d5, type: 3}
-  - _id: hurt
+  - _id: Hurt
     _clip: {fileID: 8300000, guid: 7bdcd6feb0c82114cb66959896f2a2b1, type: 3}
 --- !u!1 &8899291587996961369
 GameObject:

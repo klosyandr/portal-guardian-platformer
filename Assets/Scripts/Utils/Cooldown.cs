@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace PixelCrew.Utils{
+namespace PortalGuardian.Utils{
 
     [Serializable]
     public class Cooldown{

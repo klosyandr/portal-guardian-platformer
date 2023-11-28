@@ -1,10 +1,9 @@
-using System;
-using PixelCrew.Component.ColliderBase;
-using PixelCrew.Component.GoBased;
-using PixelCrew.Utils;
+using PortalGuardian.Component.ColliderBase;
+using PortalGuardian.Component.GoBased;
+using PortalGuardian.Utils;
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Mobs{
+namespace PortalGuardian.Creatures.Mobs{
     public class ShootingTrapAI : MonoBehaviour
     {
         [SerializeField] private LayerCheck _vision;

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Attacks{
+namespace PortalGuardian.Creatures.Attacks
+{
     public class Projectile : BaseProjectile
     {
-
         protected override void Start(){
             base.Start();
             var force = new Vector2(_direction * _speed, 0);

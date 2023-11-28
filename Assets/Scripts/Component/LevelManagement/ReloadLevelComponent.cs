@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace PixelCrew.Component.LevelManagement{
+namespace PortalGuardian.Component.LevelManagement
+{
     public class ReloadLevelComponent : MonoBehaviour
     {
         public void Reload(){           

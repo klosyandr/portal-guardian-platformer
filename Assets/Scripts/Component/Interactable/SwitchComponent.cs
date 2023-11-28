@@ -1,7 +1,8 @@
 using UnityEngine;
 
 
-namespace PixelCrew.Component.Interactaction{
+namespace PortalGuardian.Component.Interactable
+{
     public class SwitchComponent : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
@@ -10,7 +11,7 @@ namespace PixelCrew.Component.Interactaction{
 
         public void Switch(){
             _state = !_state;
-            _animator.SetBool(_animationKey,_state);
+            _animator.SetBool(_animationKey, _state);
         }
 
         [ContextMenu("Switch")]

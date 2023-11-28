@@ -1,10 +1,12 @@
 using UnityEngine;
 
-namespace PixelCrew.Component.ColliderBase{
+namespace PortalGuardian.Component.ColliderBase
+{
     public class LayerCheck : MonoBehaviour
     {
         [SerializeField] private LayerMask _layer;
         [SerializeField] private bool _isTouchingLayer;
+
         private Collider2D _collider;
 
         public bool IsTouchingLayer => _isTouchingLayer;

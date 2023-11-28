@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PixelCrew.Component.Props{
+namespace PortalGuardian.Component.Props{
     public class TeleportComponent : MonoBehaviour
         {
             [SerializeField] private Transform _destTransform;

@@ -2,14 +2,18 @@ using System;
 using UnityEngine;
 using System.Linq;
 
-namespace PixelCrew.Component.GoBased{
-    public class SpawnListComponent : MonoBehaviour{
+namespace PortalGuardian.Component.GoBased
+{
+    public class SpawnListComponent : MonoBehaviour
+    {
         [SerializeField] private SpawnData[] _spawners;
 
-        public void Spawn(string id){
+        public void Spawn(string id)
+        {
            var spawner = _spawners.FirstOrDefault(element => element.Id == id);
            spawner?.Component.Spawn();
         }
+
     }
 
     [Serializable]

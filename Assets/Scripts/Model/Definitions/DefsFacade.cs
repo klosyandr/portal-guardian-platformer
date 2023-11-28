@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PixelCrew.Model.Definitions
+namespace PortalGuardian.Model.Definitions
 {
     [CreateAssetMenu(menuName ="Defs/DefsFacade", fileName = "DefsFacade")]
     public class DefsFacade : ScriptableObject{

@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 
 
-namespace PixelCrew.Component.Audio{
+namespace PortalGuardian.Component.Audio
+{
     public class PlaySoundsComponent : MonoBehaviour
     {
         [SerializeField] private AudioSource _sourse;
@@ -16,6 +17,7 @@ namespace PixelCrew.Component.Audio{
                 break;
             }
         }
+
 
         [Serializable]
         public class AudioData{

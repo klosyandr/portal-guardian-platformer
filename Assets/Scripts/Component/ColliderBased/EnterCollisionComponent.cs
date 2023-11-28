@@ -1,9 +1,11 @@
-using PixelCrew.Utils;
+using PortalGuardian.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace PixelCrew.Component.ColliderBase{
-    public class EnterCollisionComponent : MonoBehaviour{
+namespace PortalGuardian.Component.ColliderBase
+{
+    public class EnterCollisionComponent : MonoBehaviour
+    {
         [SerializeField] private string _tag;
         [SerializeField] private LayerMask _layer = ~0;
         [SerializeField] private UnityEvent<GameObject> _action;

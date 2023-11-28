@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace PixelCrew.Component.Health{
+namespace PortalGuardian.Component.Health{
 
-    public class HealthComponent : MonoBehaviour{
+    public class HealthComponent : MonoBehaviour
+    {
         [SerializeField] private int _health;
         [SerializeField] private UnityEvent _onDamage;
         [SerializeField] private UnityEvent _OnHeal;
@@ -13,7 +14,6 @@ namespace PixelCrew.Component.Health{
         public void ModifyHealth(int hpDelta){
             _health += hpDelta;
             _onChange?.Invoke(_health);
-            Debug.Log($"HPmodify: {hpDelta}; health: {_health}");
             if (hpDelta < 0) _onDamage?.Invoke();
             if (hpDelta > 0) _OnHeal?.Invoke();
             if (_health <= 0) _onDie?.Invoke();         

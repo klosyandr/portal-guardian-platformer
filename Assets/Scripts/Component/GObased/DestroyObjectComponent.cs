@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace PixelCrew.Component.GoBased{
+namespace PortalGuardian.Component.GoBased
+{
     public class DestroyObjectComponent : MonoBehaviour
     {
         [SerializeField] private GameObject _objectToDestoy;

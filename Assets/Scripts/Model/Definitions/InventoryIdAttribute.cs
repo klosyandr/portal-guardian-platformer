@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PixelCrew.Model.Definitions{
+namespace PortalGuardian.Model.Definitions{
     public class InventoryIdAttribute : PropertyAttribute{
 
     }

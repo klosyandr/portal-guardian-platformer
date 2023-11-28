@@ -1,7 +1,7 @@
-using PixelCrew.Model.Data;
+using PortalGuardian.Model.Data;
 using UnityEngine;
 
-namespace PixelCrew.Model{
+namespace PortalGuardian.Model{
 
     public class GameSession : MonoBehaviour{
         [SerializeField] private PlayerData _dataTemp;        

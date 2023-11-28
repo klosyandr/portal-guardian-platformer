@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace PixelCrew.Component.Movement{
+namespace PortalGuardian.Component.Movement
+{
     public class VerticalLevitationComponent : MonoBehaviour
     {
         [SerializeField] private float _frequency = 1f;
@@ -15,8 +16,7 @@ namespace PixelCrew.Component.Movement{
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _posY = _rigidbody.position.y;
-            if (_randomize) 
-                _seed = Random.value * Mathf.PI * 2;
+            if (_randomize) _seed = Random.value * Mathf.PI * 2;
         }
 
         private void Update(){

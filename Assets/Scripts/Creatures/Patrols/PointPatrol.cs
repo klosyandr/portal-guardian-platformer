@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace PixelCrew.Creatures{
+namespace PortalGuardian.Creatures.Patrols{
     public class PointPatrol : Patrol
     {
         [SerializeField] private Transform[] _points;

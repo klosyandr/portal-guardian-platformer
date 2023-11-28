@@ -1,8 +1,8 @@
 using System.Collections;
-using PixelCrew.Component.ColliderBase;
+using PortalGuardian.Component.ColliderBase;
 using UnityEngine;
 
-namespace PixelCrew.Creatures{
+namespace PortalGuardian.Creatures.Patrols{
     public class PlatformPatrol : Patrol
     {
         

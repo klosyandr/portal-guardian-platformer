@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-namespace PixelCrew.Model.Data{
+namespace PortalGuardian.Model.Data{
 
     [Serializable]
     public class PlayerData{
         [SerializeField] InventoryData _inventory;
         public int HP;
-        public bool _hasAttackFire;
-        public bool _hasAttackAir;
+        public bool _hasRange;
+        public bool _hasMelee;
 
         public InventoryData Inventory => _inventory;
 

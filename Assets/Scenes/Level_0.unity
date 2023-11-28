@@ -815,10 +815,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8595147480403276733, guid: 09a394de3a300ce46bebb1e49387ecc5, type: 3}
-      propertyPath: orthographic size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8595147480403276734, guid: 09a394de3a300ce46bebb1e49387ecc5, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -975,7 +971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815416774165788091, guid: e45ee62a1d281b244873d9319781bd5f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 815416774165788091, guid: e45ee62a1d281b244873d9319781bd5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1060,14 +1056,14 @@ MonoBehaviour:
     _inventory:
       _inventory: []
     HP: 50
-    _hasAttackFire: 0
-    _hasAttackAir: 0
+    _hasRange: 0
+    _hasMelee: 0
   _dataStartLevel:
     _inventory:
       _inventory: []
     HP: 0
-    _hasAttackFire: 0
-    _hasAttackAir: 0
+    _hasRange: 0
+    _hasMelee: 0
 --- !u!4 &276286245
 Transform:
   m_ObjectHideFlags: 0
@@ -1934,7 +1930,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &452866998
 PrefabInstance:
@@ -3557,7 +3553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413853160872376569, guid: bddb29c9745766b49889b88bdf6f2fa1, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8413853160872376569, guid: bddb29c9745766b49889b88bdf6f2fa1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4982,7 +4978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7044428565163848511, guid: 29ca2792906fcdb459ff7f57f55a745d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7044428565163848511, guid: 29ca2792906fcdb459ff7f57f55a745d, type: 3}
       propertyPath: m_LocalScale.x
@@ -11618,7 +11614,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 659118059851685112, guid: a2a663b7ee83261479e17efe43d2ef9b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 659118059851685112, guid: a2a663b7ee83261479e17efe43d2ef9b, type: 3}
       propertyPath: m_LocalPosition.x

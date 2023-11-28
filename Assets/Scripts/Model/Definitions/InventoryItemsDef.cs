@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace PixelCrew.Model.Definitions{
+namespace PortalGuardian.Model.Definitions{
     [CreateAssetMenu(menuName = "Defs/InventoryItems", fileName = "InventoryItems")]
     public class InventoryItemsDef : ScriptableObject{
         [SerializeField] private ItemDef[] _items;

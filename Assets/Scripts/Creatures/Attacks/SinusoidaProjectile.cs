@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Attacks{
+namespace PortalGuardian.Creatures.Attacks
+{
     public class SinusoidaProjectile : BaseProjectile
     {
         [SerializeField] private float _frequency = 1f;

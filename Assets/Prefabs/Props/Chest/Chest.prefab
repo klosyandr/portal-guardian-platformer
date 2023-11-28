@@ -171,8 +171,6 @@ MonoBehaviour:
   _required:
   - Id: Key
     Value: 1
-  - Id: Coin
-    Value: 2
   _removeAfterUse: 1
   _onSuccess:
     m_PersistentCalls:
@@ -226,10 +224,6 @@ MonoBehaviour:
   - _name: 
     _prefab: {fileID: 7589275166435560376, guid: b5af1e65145841849a43ca373cd4efa3, type: 3}
     "_low\u0421hance": 0.75
-    "_up\u0421hance": 0.95
-  - _name: 
-    _prefab: {fileID: 5457325675271185020, guid: 9dac0cc4bd6c9ee43b75fc7b8c5dbf8e, type: 3}
-    "_low\u0421hance": 0.95
     "_up\u0421hance": 1
   _target: {fileID: 659118059851685112}
 --- !u!114 &659118059851685108

@@ -1,9 +1,11 @@
 using System.Collections;
-using PixelCrew.Component.ColliderBase;
-using PixelCrew.Component.GoBased;
+using PortalGuardian.Component.ColliderBase;
+using PortalGuardian.Component.GoBased;
+using PortalGuardian.Creatures.Patrols;
 using UnityEngine;
 
-namespace PixelCrew.Creatures{
+namespace PortalGuardian.Creatures.Mobs{
+    
     public class MobAI : MonoBehaviour
     {
         [SerializeField] private LayerCheck _vision;

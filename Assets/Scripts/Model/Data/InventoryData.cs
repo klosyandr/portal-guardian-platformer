@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using PixelCrew.Model.Definitions;
+using PortalGuardian.Model.Definitions;
 using UnityEngine;
 
-namespace PixelCrew.Model.Data{
+namespace PortalGuardian.Model.Data{
 
     [Serializable]
     public class InventoryData{

@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Mobs{
+namespace PortalGuardian.Creatures.Mobs
+{
     public class Frog : Creature
     {
         protected static readonly int isDeadKey = Animator.StringToHash("is-dead");

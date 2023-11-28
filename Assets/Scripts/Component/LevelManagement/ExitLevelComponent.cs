@@ -1,8 +1,9 @@
-using PixelCrew.Model;
+using PortalGuardian.Model;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace PixelCrew.Component.LevelManagement{
+namespace PortalGuardian.Component.LevelManagement
+{
     public class ExitLevelComponent : MonoBehaviour
     {
         [SerializeField] private string _sceneName;

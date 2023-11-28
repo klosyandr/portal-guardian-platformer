@@ -1,11 +1,11 @@
-using PixelCrew.Model;
-using PixelCrew.Model.Data;
-using PixelCrew.Model.Definitions;
+using PortalGuardian.Model;
+using PortalGuardian.Model.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
 
-namespace PixelCrew.Component.Interactaction{
+namespace PortalGuardian.Component.Interactable
+{
     public class RequireItemComponent : MonoBehaviour
     {
         [SerializeField] private InventoryItemData[] _required;

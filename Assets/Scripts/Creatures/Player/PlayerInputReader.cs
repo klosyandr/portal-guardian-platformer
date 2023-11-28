@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using PixelCrew.Creatures;
 
-namespace PixelCrew{
-    public class PlayerInputReader : MonoBehaviour{
+namespace PortalGuardian.Creatures.Player
+{
+    public class PlayerInputReader : MonoBehaviour
+    {
         [SerializeField] private Player _player;
 
         public void OnMove(InputValue context){
@@ -12,12 +13,12 @@ namespace PixelCrew{
         }
         
         public void OnAirAttack(InputValue context){
-            if (context.isPressed) _player.AirAttack();
-            else _player.AirAttackSeries();             
+            if (context.isPressed) _player.DoMeleeAttack();
+            else _player.DoMeleeAttackSeries();             
         }
 
         public void OnFireAttack(InputValue context){
-             _player.FireAttack();
+             _player.RangeAttack();
         }
         
         public void OnInteract(InputValue context){

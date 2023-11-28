@@ -1,15 +1,17 @@
 using System.Collections.Generic;
-using PixelCrew.Component.ColliderBase;
-using PixelCrew.Component.GoBased;
-using PixelCrew.Utils;
+using PortalGuardian.Component.ColliderBase;
+using PortalGuardian.Component.GoBased;
+using PortalGuardian.Utils;
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Mobs{
+namespace PortalGuardian.Creatures.Mobs
+{
     public class ModulShootingTrapAI : MonoBehaviour
     {
         [SerializeField] private LayerCheck _vision;
         [SerializeField] private Cooldown _cooldown;
         [SerializeField] private List<PartShootingTrapAI> _heads;
+        
         private int _tempHead = -1;
         private DestroyObjectComponent _destroy;
 
@@ -24,7 +26,6 @@ namespace PixelCrew.Creatures.Mobs{
                     _tempHead = _tempHead < _heads.Count - 1 ? _tempHead + 1 : 0;
                     var temp = _heads[_tempHead];
                     temp.Attack();
-                    
                 }
             }
         }

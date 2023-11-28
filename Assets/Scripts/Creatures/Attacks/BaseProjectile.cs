@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Attacks{
+namespace PortalGuardian.Creatures.Attacks
+{
     public class BaseProjectile : MonoBehaviour
     {
         [SerializeField] protected float _speed;

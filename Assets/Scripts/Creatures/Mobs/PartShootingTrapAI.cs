@@ -1,8 +1,8 @@
-using PixelCrew.Component.GoBased;
-using PixelCrew.Utils;
+using PortalGuardian.Component.GoBased;
+using PortalGuardian.Utils;
 using UnityEngine;
 
-namespace PixelCrew.Creatures.Mobs{
+namespace PortalGuardian.Creatures.Mobs{
     public class PartShootingTrapAI : MonoBehaviour
     {
         [SerializeField] private SpawnComponent _attack;              

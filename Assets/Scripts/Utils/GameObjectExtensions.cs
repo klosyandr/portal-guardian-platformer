@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PixelCrew.Utils{
+namespace PortalGuardian.Utils{
 
     public static class GameObjectExtensions{
         public static bool IsInLayer(this GameObject go, LayerMask layer){

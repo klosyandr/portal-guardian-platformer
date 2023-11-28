@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PixelCrew.Component.Health{
+namespace PortalGuardian.Component.Health{
 
     public class ModifyHealthComponent : MonoBehaviour
     {

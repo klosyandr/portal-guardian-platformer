@@ -1,22 +1,21 @@
 using System.Collections;
-using PixelCrew.Component.Health;
-using PixelCrew.Component.ColliderBase;
-using PixelCrew.Component.Props;
-using PixelCrew.Model;
-using PixelCrew.Model.Data;
-using PixelCrew.Utils;
+using PortalGuardian.Component.Health;
+using PortalGuardian.Component.ColliderBase;
+using PortalGuardian.Component.Props;
+using PortalGuardian.Model;
+using PortalGuardian.Model.Data;
+using PortalGuardian.Utils;
 using UnityEditor;
 using UnityEngine;
-using JetBrains.Annotations;
 
-namespace PixelCrew. Creatures{
+namespace PortalGuardian.Creatures.Player{
     public class Player : Creature
     {
         [SerializeField] private float _fallVelocity;
         [SerializeField] private CheckCircleOverlap _interactionCheck;
         [SerializeField] private LayerCheck _ladderCheck;
           
-        [SerializeField] private Cooldown _airAttackCooldown;
+        [SerializeField] private Utils.Cooldown _meleeAttackCooldown;
         [SerializeField] private ParticleSystem _hitParticles;
         [SerializeField] private int _coinsToDispose = 5;
 
@@ -28,7 +27,8 @@ namespace PixelCrew. Creatures{
         private bool _isOnLadder;         
         private float _ladderUp;
         private float _ladderDown;        
-        private float _ladderCenterHorizontal;
+        private float _ladderCenterHorizontal;        
+        private GameSession _session;
         
         protected static readonly int _climbKey = Animator.StringToHash("is-climb");
         protected static readonly int _climbingKey = Animator.StringToHash("is-climbing");     
@@ -37,7 +37,6 @@ namespace PixelCrew. Creatures{
         private int ChargeCount => _session.Data.Inventory.Count("Charge");
         private InventoryData Inventory => _session.Data.Inventory;
 
-        private GameSession _session;
 
         public void Start(){
             _session = FindObjectOfType<GameSession>();
@@ -61,21 +60,13 @@ namespace PixelCrew. Creatures{
 
             if (_isOnLadder){ 
                 if (_direction.x == 0){  
-                    LadderMode();
+                    MoveLadderMode();
                     return;
                 }           
                 LadderModeSwitch(false);
             } 
             
-            var xVelocity = _direction.x * _speed;
-            var yVelocity = CalculateYVelocity();
-            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
-        
-            _animator.SetBool(isGroundKey, _isGrounded);
-            _animator.SetBool(isRunKey, _direction.x !=0);
-            _animator.SetFloat(yVelocityKey, _rigidbody.velocity.y);
-
-            UpdateSpriteDirection();
+            MoveSimple();
         }
 
         public void CheckLadder(){
@@ -107,9 +98,10 @@ namespace PixelCrew. Creatures{
             _animator.SetBool(_climbingKey, false);                 
         }
 
-        private void LadderMode(){
+        private void MoveLadderMode(){
             transform.Translate(new Vector2(0, _speed * _direction.y * Time.fixedDeltaTime));
             _animator.SetBool(_climbingKey, _direction.y != 0);
+
             float xPos = Mathf.Lerp(transform.position.x, _ladderCenterHorizontal, 10 * Time.deltaTime);
             transform.position = new Vector2(xPos, transform.position.y);
         }
@@ -117,10 +109,22 @@ namespace PixelCrew. Creatures{
         public void GetPointLadder(GameObject go){
             var ladder = go.GetComponent<LadderComponent>();
             if (ladder != null){
-                _ladderUp = ladder.Up.position.y;
-                _ladderDown = ladder.Down.position.y;
-                _ladderCenterHorizontal = ladder.Up.position.x;
+                _ladderUp = ladder.Up;
+                _ladderDown = ladder.Down;
+                _ladderCenterHorizontal = ladder.CenterHorizontal;
             }
+        }
+
+        private void MoveSimple(){
+            var xVelocity = _direction.x * _speed;
+            var yVelocity = CalculateYVelocity();
+            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
+        
+            _animator.SetBool(isGroundKey, _isGrounded);
+            _animator.SetBool(isRunKey, _direction.x !=0);
+            _animator.SetFloat(yVelocityKey, _rigidbody.velocity.y);
+
+            UpdateSpriteDirection();
         }
 
         protected override float CalculateYVelocity(){
@@ -133,9 +137,8 @@ namespace PixelCrew. Creatures{
         protected override float CalculateJumpVelocity(float yVelocity){
             if(!_isGrounded && _allowDoubleJump){
                 _allowDoubleJump = false;
-                _particles.Spawn("Jump");
-                Sounds.Play("jump");
-                _direction.y = 0;  
+                _direction.y = 0; 
+                PlayEffects("Jump"); 
                 return _jumpSpeed;
             }    
             return base.CalculateJumpVelocity(yVelocity);      
@@ -151,42 +154,42 @@ namespace PixelCrew. Creatures{
         public void AddInInventory(string id, int value){
             _session.Data.Inventory.Add(id, value);
         }
-        
-        public void AirAttack(){
-            if (!_session.Data._hasAttackAir || ChargeCount == 0) return;
-            if (!_airAttackCooldown.IsReady) return;
 
-            _airAttackCooldown.Reset();
-            _particles.Spawn("AirAttack");
-            Sounds.Play("melee");
-            Inventory.Remove("Charge", 1);
+        public void DoMeleeAttack(){
+           if (CheckMeleeAttack()) MeleeAttack();
+        }    
+
+        public void DoMeleeAttackSeries(){ 
+            if (CheckMeleeAttack()) StartCoroutine(MeleeAttackSeries());
         }        
-        
-        public void AirAttackSeries(){ 
-            if (!_session.Data._hasAttackAir || ChargeCount == 0) return;
-            if (!_airAttackCooldown.IsReady) return;
 
-            StartCoroutine(SpawnAttackSeries());
+        private void MeleeAttack(){
+            _meleeAttackCooldown.Reset();
+            PlayEffects("Melee");
+            Inventory.Remove("Charge", 1);
+        }
+
+        private bool CheckMeleeAttack(){
+            if (!_session.Data._hasMelee || ChargeCount == 0) return false;
+            if (!_meleeAttackCooldown.IsReady) return false;
+
+            return true;
         }
         
-        private IEnumerator SpawnAttackSeries (){
-            _airAttackCooldown.Reset();
+        private IEnumerator MeleeAttackSeries (){
             int deltaCharge = 0;
             while (ChargeCount > 0 && deltaCharge != 3){
                 yield return new WaitForSeconds(0.5f);
-                _particles.Spawn("AirAttack");
-                Sounds.Play("melee");
-                Inventory.Remove("Charge", 1);
+                MeleeAttack();
                 deltaCharge ++;
             }
-            StopCoroutine(SpawnAttackSeries());
+            StopCoroutine(MeleeAttackSeries());
         }
 
-        public void FireAttack(){
-            if (!_session.Data._hasAttackFire) return;
+        public void RangeAttack(){
+            if (!_session.Data._hasRange) return;
 
-            _particles.Spawn("FireAttack");            
-            Sounds.Play("range");
+           PlayEffects("Range");
             _attackRange.Check();
         }
 
@@ -218,7 +221,7 @@ namespace PixelCrew. Creatures{
                 var contact = other.contacts[0];
                 var x = contact.relativeVelocity.y;
                 if (contact.relativeVelocity.y >= _fallVelocity){
-                    _particles.Spawn("Fall");
+                    PlayEffects("Fall");
                 }
             }
         }        
