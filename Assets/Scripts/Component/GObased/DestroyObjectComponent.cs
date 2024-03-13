@@ -6,7 +6,8 @@ namespace PortalGuardian.Component.GoBased
     {
         [SerializeField] private GameObject _objectToDestoy;
 
-        public void DestroyObject(){
+        public void DestroyObject()
+        {
             Destroy(_objectToDestoy);
         }
     }

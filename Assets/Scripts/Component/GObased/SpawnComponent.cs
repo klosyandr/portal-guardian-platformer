@@ -9,7 +9,8 @@ namespace PortalGuardian.Component.GoBased
 
         [ContextMenu("Spawn")]
 
-        public void Spawn(){
+        public void Spawn()
+        {
             var instansiate = Instantiate(_prefab, _target.position, Quaternion.identity);
             instansiate.transform.localScale = _target.lossyScale;
         }

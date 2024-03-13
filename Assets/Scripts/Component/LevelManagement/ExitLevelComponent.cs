@@ -8,7 +8,8 @@ namespace PortalGuardian.Component.LevelManagement
     {
         [SerializeField] private string _sceneName;
 
-        public void Exit(){
+        public void Exit()
+        {
             var session = FindObjectOfType<GameSession>();            
             session.SaveStartData();
             SceneManager.LoadScene(_sceneName);

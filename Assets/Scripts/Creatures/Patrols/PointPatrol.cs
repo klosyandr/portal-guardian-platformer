@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-namespace PortalGuardian.Creatures.Patrols{
+namespace PortalGuardian.Creatures.Patrols
+{
     public class PointPatrol : Patrol
     {
         [SerializeField] private Transform[] _points;
@@ -10,14 +11,17 @@ namespace PortalGuardian.Creatures.Patrols{
         private Creature _creature;
         private int _destinationPointIndex;
 
-        private void Awake(){
+        private void Awake()
+        {
             _creature = GetComponent<Creature>();
         }
 
         public override IEnumerator DoPatrol()
         {
-            while (enabled){
-                if(IsOnPoint()){
+            while (enabled)
+            {
+                if(IsOnPoint())
+                {
                  _destinationPointIndex = (int) Mathf.Repeat(_destinationPointIndex + 1, _points.Length);
                 }
 
@@ -29,7 +33,8 @@ namespace PortalGuardian.Creatures.Patrols{
             }
         }
 
-        private bool IsOnPoint(){
+        private bool IsOnPoint()
+        {
             return (_points[_destinationPointIndex].position - transform.position).magnitude < _treshold;
         }
     }

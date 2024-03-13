@@ -43,7 +43,7 @@ namespace PortalGuardian.Creatures.Player{
             _session.LoadStartData();
 
             var health = GetComponent<HealthComponent>();
-            health.SetHealth(_session.Data.HP);
+            health.SetHealth(_session.Data.Hp.Value);
             Inventory.OnChanged += OnInventoryChanged;
         }
 
@@ -212,7 +212,7 @@ namespace PortalGuardian.Creatures.Player{
         public void Heal(){
             if (Inventory.Count("Potion") == 0) return;
 
-            _session.Data.HP += 5;
+            _session.Data.Hp.Value += 5;
             Inventory.Remove("Potion", 1);
         }
 
@@ -226,8 +226,8 @@ namespace PortalGuardian.Creatures.Player{
             }
         }        
 
-        public void OnChangeHealth(int hpDelta){
-            _session.Data.HP +=  hpDelta;
+        public void OnChangeHealth(int newValue){
+            _session.Data.Hp.Value =  newValue;
         }
 
         #if UNITY_EDITOR

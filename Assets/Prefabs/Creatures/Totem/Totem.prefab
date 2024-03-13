@@ -300,10 +300,6 @@ PrefabInstance:
       propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 571041129114467880}
-    - target: {fileID: 6743233800107292170, guid: 4372ca8a5c88b2e449cac3560570a866, type: 3}
-      propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroyPart
-      objectReference: {fileID: 0}
     - target: {fileID: 6743233800107292175, guid: 4372ca8a5c88b2e449cac3560570a866, type: 3}
       propertyPath: m_Name
       value: totem-1-head

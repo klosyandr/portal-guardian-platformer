@@ -9,7 +9,8 @@ namespace PortalGuardian.Component.Collectable
         [InventoryId][SerializeField] private string _id;
         [SerializeField] private int _value = 1;
 
-        public void Modify(GameObject go){    
+        public void Modify(GameObject go)
+        {    
             var player = go.GetComponent<Player>();
             player.AddInInventory(_id, _value);
         }

@@ -17,7 +17,8 @@ namespace PortalGuardian.Component.GoBased
     }
 
     [Serializable]
-    public class SpawnData{
+    public class SpawnData
+    {
         public string Id;
         public SpawnComponent Component;
     }

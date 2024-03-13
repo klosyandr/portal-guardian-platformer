@@ -11,15 +11,18 @@ namespace PortalGuardian.Component.ColliderBase
 
         public bool IsTouchingLayer => _isTouchingLayer;
 
-        private void Awake(){
+        private void Awake()
+        {
             _collider = GetComponent<Collider2D>();
         }
 
-        private void OnTriggerStay2D(Collider2D oter){
+        private void OnTriggerStay2D(Collider2D oter)
+        {
             _isTouchingLayer = _collider.IsTouchingLayers(_layer);
         }
 
-        private void OnTriggerExit2D(Collider2D oter){
+        private void OnTriggerExit2D(Collider2D oter)
+        {
             _isTouchingLayer = _collider.IsTouchingLayers(_layer);
         }
     }

@@ -2,7 +2,8 @@ using PortalGuardian.Component.GoBased;
 using PortalGuardian.Utils;
 using UnityEngine;
 
-namespace PortalGuardian.Creatures.Mobs{
+namespace PortalGuardian.Creatures.Mobs
+{
     public class PartShootingTrapAI : MonoBehaviour
     {
         [SerializeField] private SpawnComponent _attack;              
@@ -12,7 +13,8 @@ namespace PortalGuardian.Creatures.Mobs{
         private Animator _animator;
         private static readonly int _attackKey = Animator.StringToHash("attack");
 
-        private void Awake(){
+        private void Awake()
+        {
             _animator = GetComponent<Animator>();
         }
 

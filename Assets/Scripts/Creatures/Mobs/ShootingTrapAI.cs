@@ -3,7 +3,8 @@ using PortalGuardian.Component.GoBased;
 using PortalGuardian.Utils;
 using UnityEngine;
 
-namespace PortalGuardian.Creatures.Mobs{
+namespace PortalGuardian.Creatures.Mobs
+{
     public class ShootingTrapAI : MonoBehaviour
     {
         [SerializeField] private LayerCheck _vision;
@@ -21,26 +22,31 @@ namespace PortalGuardian.Creatures.Mobs{
         private static readonly int _meleeKey = Animator.StringToHash("melee");
         private static readonly int _rangeKey = Animator.StringToHash("range");
 
-        private void Awake(){
+        private void Awake()
+        {
             _animator = GetComponent<Animator>();
         }
 
-        private void Update(){
-            if (_vision.IsTouchingLayer){
-                if (_meleeCanAttack.IsTouchingLayer){
-                    if (_meleeCooldown.IsReady){
+        private void Update()
+        {
+            if (_vision.IsTouchingLayer)
+            {
+                if (_meleeCanAttack.IsTouchingLayer)
+                {
+                    if (_meleeCooldown.IsReady)
+                    {
                         _meleeCooldown.Reset();
                         MeleeAttack();
                         return;
                     }
                 }
 
-                if (_rangeCooldown.IsReady){
+                if (_rangeCooldown.IsReady)
+                {
                     _rangeCooldown.Reset();
                     RangeAttack();
                 }
             }
-
         }
 
         private void OnRangeAttack()
@@ -62,8 +68,6 @@ namespace PortalGuardian.Creatures.Mobs{
         {
             _animator.SetTrigger(_meleeKey);
         }
-
-
     }
 }
 

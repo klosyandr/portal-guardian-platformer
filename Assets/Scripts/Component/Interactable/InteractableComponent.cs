@@ -7,7 +7,8 @@ namespace PortalGuardian.Component.Interactable
     {
         [SerializeField] private UnityEvent _action;
 
-        public void Interact(){
+        public void Interact()
+        {
             _action?.Invoke();
         }
     }

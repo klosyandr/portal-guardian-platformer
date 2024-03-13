@@ -15,13 +15,17 @@ namespace PortalGuardian.Creatures.Mobs
         private int _tempHead = -1;
         private DestroyObjectComponent _destroy;
 
-        private void Awake(){
+        private void Awake()
+        {
             _destroy = GetComponent<DestroyObjectComponent>();
         }
 
-        private void Update(){
-            if (_vision.IsTouchingLayer){
-                if (_cooldown.IsReady) {
+        private void Update()
+        {
+            if (_vision.IsTouchingLayer)
+            {
+                if (_cooldown.IsReady)
+                {
                     _cooldown.Reset();
                     _tempHead = _tempHead < _heads.Count - 1 ? _tempHead + 1 : 0;
                     var temp = _heads[_tempHead];
@@ -30,9 +34,11 @@ namespace PortalGuardian.Creatures.Mobs
             }
         }
 
-        public void DestroyPart(PartShootingTrapAI head){
+        public void DestroyPart(PartShootingTrapAI head)
+        {
             _heads.Remove(head);
-            if (_heads.Count == 0){
+            if (_heads.Count == 0)
+            {
                 _destroy.DestroyObject();
             }
         }

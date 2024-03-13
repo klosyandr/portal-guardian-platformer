@@ -10,7 +10,8 @@ namespace PortalGuardian.Creatures.Attacks
         protected Rigidbody2D _rigidbody;
         protected int _direction;
 
-        protected virtual void Start(){
+        protected virtual void Start()
+        {
             var mod = _invertX ? -1 : 1;
             _direction = mod * transform.lossyScale.x > 0 ? 1 : -1;
             _rigidbody = GetComponent<Rigidbody2D>();

@@ -10,7 +10,8 @@ namespace PortalGuardian.Component.ColliderBase
         [SerializeField] private LayerMask _layer = ~0;
         [SerializeField] private UnityEvent<GameObject> _action;
 
-        private void OnCollisionEnter2D(Collision2D other){
+        private void OnCollisionEnter2D(Collision2D other)
+        {
             if (!other.gameObject.IsInLayer(_layer)) return;
             if (!string.IsNullOrEmpty(_tag) && !other.gameObject.CompareTag(_tag)) return;
 

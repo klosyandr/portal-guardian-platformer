@@ -16,7 +16,8 @@ namespace PortalGuardian.Creatures.Attacks
             _posY = _rigidbody.position.y;
         }
 
-        private void FixedUpdate(){
+        private void FixedUpdate()
+        {
             var position = _rigidbody.position;  
             position.x += _direction * _speed;
             position.y = _posY + Mathf.Sin(_time * _frequency) * _amplitude;

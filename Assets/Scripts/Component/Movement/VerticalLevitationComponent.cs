@@ -19,7 +19,8 @@ namespace PortalGuardian.Component.Movement
             if (_randomize) _seed = Random.value * Mathf.PI * 2;
         }
 
-        private void Update(){
+        private void Update()
+        {
             var position = _rigidbody.position;  
             position.y = _posY + Mathf.Sin(_seed + Time.time * _frequency) * _amplitude;
             _rigidbody.MovePosition(position);
