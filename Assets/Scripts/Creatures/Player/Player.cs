@@ -7,17 +7,21 @@ using PortalGuardian.Model.Data;
 using PortalGuardian.Utils;
 using UnityEditor;
 using UnityEngine;
+using PortalGuardian.Component.GoBased;
+using PortalGuardian.Model.Definitions;
 
-namespace PortalGuardian.Creatures.Player{
+namespace PortalGuardian.Creatures.Player
+{
     public class Player : Creature
     {
         [SerializeField] private float _fallVelocity;
         [SerializeField] private CheckCircleOverlap _interactionCheck;
         [SerializeField] private LayerCheck _ladderCheck;
           
-        [SerializeField] private Utils.Cooldown _meleeAttackCooldown;
+        [SerializeField] private Cooldown _throwAttackCooldown;
         [SerializeField] private ParticleSystem _hitParticles;
         [SerializeField] private int _coinsToDispose = 5;
+        [SerializeField] private SpawnComponent _throwSpawner;
 
         [Space] [Header("For Gizmos")]
         [SerializeField] private Vector3 _groundCheckPositionDelta;
@@ -36,26 +40,18 @@ namespace PortalGuardian.Creatures.Player{
         private int CoinsCount => _session.Data.Inventory.Count("Coin");        
         private int ChargeCount => _session.Data.Inventory.Count("Charge");
         private InventoryData Inventory => _session.Data.Inventory;
+        private string SelectedItemId =>_session.QuickInvenory.SelectedItem.Id;
 
-
-        public void Start(){
+        public void Start()
+        {
             _session = FindObjectOfType<GameSession>();
-            _session.LoadStartData();
 
             var health = GetComponent<HealthComponent>();
             health.SetHealth(_session.Data.Hp.Value);
-            Inventory.OnChanged += OnInventoryChanged;
         }
 
-        private void OnInventoryChanged(string id, int count){
-            //если в инвентаре что-то изменится
-        }
-
-        public void OnDestroy(){            
-            Inventory.OnChanged -= OnInventoryChanged;
-        }
-
-        protected override void FixedUpdate(){  
+        protected override void FixedUpdate()
+        {  
             if (_ladderCheck.IsTouchingLayer && _direction.y != 0) CheckLadder();    
 
             if (_isOnLadder){ 
@@ -69,25 +65,33 @@ namespace PortalGuardian.Creatures.Player{
             MoveSimple();
         }
 
-        public void CheckLadder(){
+        public void CheckLadder()
+        {
             var vertical = _direction.y;
-            if (_isOnLadder){
+            if (_isOnLadder)
+            {
                 if ((vertical > 0 && transform.position.y > _ladderUp) || 
-                    (vertical < 0 && transform.position.y < _ladderDown)){  
+                    (vertical < 0 && transform.position.y < _ladderDown))
+                {  
                         LadderModeSwitch(false);          
                         return;
                 }
-            } else{
+            } 
+            else
+            {
                 if ((vertical > 0 && transform.position.y < _ladderUp) || 
-                    (vertical < 0 && transform.position.y > _ladderUp)){
+                    (vertical < 0 && transform.position.y > _ladderUp))
+                {
                         LadderModeSwitch(true);
                         return;
                 }
             }
         }
 
-        public void LadderModeSwitch(bool state){
-            if (state) {
+        public void LadderModeSwitch(bool state)
+        {
+            if (state)
+            {
                 _rigidbody.velocity = Vector2.zero;
                 _direction = Vector2.zero;
             }
@@ -98,7 +102,8 @@ namespace PortalGuardian.Creatures.Player{
             _animator.SetBool(_climbingKey, false);                 
         }
 
-        private void MoveLadderMode(){
+        private void MoveLadderMode()
+        {
             transform.Translate(new Vector2(0, _speed * _direction.y * Time.fixedDeltaTime));
             _animator.SetBool(_climbingKey, _direction.y != 0);
 
@@ -106,16 +111,19 @@ namespace PortalGuardian.Creatures.Player{
             transform.position = new Vector2(xPos, transform.position.y);
         }
 
-        public void GetPointLadder(GameObject go){
+        public void GetPointLadder(GameObject go)
+        {
             var ladder = go.GetComponent<LadderComponent>();
-            if (ladder != null){
+            if (ladder != null)
+            {
                 _ladderUp = ladder.Up;
                 _ladderDown = ladder.Down;
                 _ladderCenterHorizontal = ladder.CenterHorizontal;
             }
         }
 
-        private void MoveSimple(){
+        private void MoveSimple()
+        {
             var xVelocity = _direction.x * _speed;
             var yVelocity = CalculateYVelocity();
             _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
@@ -127,15 +135,19 @@ namespace PortalGuardian.Creatures.Player{
             UpdateSpriteDirection();
         }
 
-        protected override float CalculateYVelocity(){
-            if (_isGrounded) {
+        protected override float CalculateYVelocity()
+        {
+            if (_isGrounded) 
+            {
                 _allowDoubleJump = true;
             }
             return base.CalculateYVelocity();
         }
 
-        protected override float CalculateJumpVelocity(float yVelocity){
-            if(!_isGrounded && _allowDoubleJump){
+        protected override float CalculateJumpVelocity(float yVelocity)
+        {
+            if(!_isGrounded && _allowDoubleJump)
+            {
                 _allowDoubleJump = false;
                 _direction.y = 0; 
                 PlayEffects("Jump"); 
@@ -144,56 +156,72 @@ namespace PortalGuardian.Creatures.Player{
             return base.CalculateJumpVelocity(yVelocity);      
         }
 
-        protected override void TakeDamage(){
+        protected override void TakeDamage()
+        {
             base.TakeDamage();
-            if (CoinsCount > 0){
+            if (CoinsCount > 0)
+            {
                 SpawnCoins();
             }
         }
 
-        public void AddInInventory(string id, int value){
+        public void AddInInventory(string id, int value)
+        {
             _session.Data.Inventory.Add(id, value);
         }
 
-        public void DoMeleeAttack(){
-           if (CheckMeleeAttack()) MeleeAttack();
+        public void DoThrowAttack()
+        {
+           if (CheckThrowAttack()) ThrowAndRemoveFromInventory();
         }    
 
-        public void DoMeleeAttackSeries(){ 
-            if (CheckMeleeAttack()) StartCoroutine(MeleeAttackSeries());
+        public void DoThrowAttackSeries()
+        { 
+            if (CheckThrowAttack()) StartCoroutine(ThrowAttackSeries());
         }        
 
-        private void MeleeAttack(){
-            _meleeAttackCooldown.Reset();
+        private void ThrowAndRemoveFromInventory()
+        {
+            _throwAttackCooldown.Reset();
+
+            var trowableId = _session.QuickInvenory.SelectedItem.Id;
+            var trowableDef = DefsFacade.I.TrowableItems.Get(trowableId);
+
+            _throwSpawner.SetPrefab(trowableDef.Projectile);
             PlayEffects("Melee");
-            Inventory.Remove("Charge", 1);
+            Inventory.Remove(trowableId, 1);
         }
 
-        private bool CheckMeleeAttack(){
-            if (!_session.Data._hasMelee || ChargeCount == 0) return false;
-            if (!_meleeAttackCooldown.IsReady) return false;
-
-            return true;
+        private bool CheckThrowAttack()
+        {
+            var def = DefsFacade.I.Items.Get(SelectedItemId);
+            if (!_session.Data._hasMelee) return false;
+            if (!_throwAttackCooldown.IsReady) return false;
+            
+            return def.HasTag(ItemTag.Throwable);
         }
         
-        private IEnumerator MeleeAttackSeries (){
+        private IEnumerator ThrowAttackSeries ()
+        {
             int deltaCharge = 0;
-            while (ChargeCount > 0 && deltaCharge != 3){
+            while (ChargeCount > 0 && deltaCharge != 3)
+            {
                 yield return new WaitForSeconds(0.5f);
-                MeleeAttack();
+                ThrowAndRemoveFromInventory();
                 deltaCharge ++;
             }
-            StopCoroutine(MeleeAttackSeries());
         }
 
-        public void RangeAttack(){
+        public void RangeAttack()
+        {
             if (!_session.Data._hasRange) return;
 
-           PlayEffects("Range");
+            PlayEffects("Range");
             _attackRange.Check();
         }
 
-        public void SpawnCoins(){
+        public void SpawnCoins()
+        {
             var score = CoinsCount;
             var value = Mathf.Min(_coinsToDispose, score);
             Inventory.Remove("Coin", value);
@@ -205,18 +233,21 @@ namespace PortalGuardian.Creatures.Player{
             _hitParticles.Play();
         }
 
-        public void Interact(){
+        public void Interact()
+        {
             _interactionCheck.Check();
         }
 
-        public void Heal(){
+        public void Heal()
+        {
             if (Inventory.Count("Potion") == 0) return;
 
             _session.Data.Hp.Value += 5;
             Inventory.Remove("Potion", 1);
         }
 
-        public void OnCollisionEnter2D(Collision2D other){
+        public void OnCollisionEnter2D(Collision2D other)
+        {
             if (other.gameObject.IsInLayer(_groundLayer)){
                 var contact = other.contacts[0];
                 var x = contact.relativeVelocity.y;
@@ -224,14 +255,21 @@ namespace PortalGuardian.Creatures.Player{
                     PlayEffects("Fall");
                 }
             }
-        }        
+        }       
 
-        public void OnChangeHealth(int newValue){
+        public void NextItem()
+        {
+            _session.QuickInvenory.SetNextItem();
+        } 
+
+        public void OnChangeHealth(int newValue)
+        {
             _session.Data.Hp.Value =  newValue;
         }
 
         #if UNITY_EDITOR
-        private void OnDrawGizmos(){
+        private void OnDrawGizmos()
+        {
             Handles.color = _isGrounded ? HandlesUtils.TransparentGreen : HandlesUtils.TransparentRed;
             Handles.DrawSolidDisc(transform.position + _groundCheckPositionDelta, Vector3.forward, _groundCheckRadius);
         }

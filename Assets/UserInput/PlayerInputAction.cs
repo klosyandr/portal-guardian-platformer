@@ -71,6 +71,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5a0410f-58bc-4132-b452-7a74a80fa8a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a30841d-d5ad-4fcf-9cfe-ceef593934b9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Control scheme"",
+                    ""action"": ""NextItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -257,6 +277,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_NextItem = m_Player.FindAction("NextItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -323,6 +344,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_NextItem;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -332,6 +354,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        public InputAction @NextItem => m_Wrapper.m_Player_NextItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -356,6 +379,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Heal.started += instance.OnHeal;
             @Heal.performed += instance.OnHeal;
             @Heal.canceled += instance.OnHeal;
+            @NextItem.started += instance.OnNextItem;
+            @NextItem.performed += instance.OnNextItem;
+            @NextItem.canceled += instance.OnNextItem;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -375,6 +401,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Heal.started -= instance.OnHeal;
             @Heal.performed -= instance.OnHeal;
             @Heal.canceled -= instance.OnHeal;
+            @NextItem.started -= instance.OnNextItem;
+            @NextItem.performed -= instance.OnNextItem;
+            @NextItem.canceled -= instance.OnNextItem;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -408,5 +437,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnNextItem(InputAction.CallbackContext context);
     }
 }

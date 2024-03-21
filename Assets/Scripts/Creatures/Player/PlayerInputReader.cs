@@ -13,8 +13,8 @@ namespace PortalGuardian.Creatures.Player
         }
         
         public void OnAirAttack(InputValue context){
-            if (context.isPressed) _player.DoMeleeAttack();
-            else _player.DoMeleeAttackSeries();             
+            if (context.isPressed) _player.DoThrowAttack();
+            else _player.DoThrowAttackSeries();             
         }
 
         public void OnFireAttack(InputValue context){
@@ -27,6 +27,10 @@ namespace PortalGuardian.Creatures.Player
         
         public void OnHeal(InputValue context){
             _player.Heal();
+        }
+
+        public void OnNextItem(InputValue context){
+            _player.NextItem();
         }
     }
 }

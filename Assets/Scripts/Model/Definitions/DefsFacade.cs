@@ -6,9 +6,11 @@ namespace PortalGuardian.Model.Definitions
     public class DefsFacade : ScriptableObject
     {
         [SerializeField] private InventoryItemsDef _items;
+        [SerializeField] private TrowableItemsDef _trowableItems;
         [SerializeField] private PlayerDef _player;
 
-        public InventoryItemsDef Items => _items;        
+        public InventoryItemsDef Items => _items; 
+        public TrowableItemsDef TrowableItems => _trowableItems;       
         public PlayerDef Player => _player;
 
         private static DefsFacade _instance;

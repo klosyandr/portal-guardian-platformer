@@ -6,8 +6,9 @@ namespace PortalGuardian.Model.Data
 {
 
     [Serializable]
-    public class PlayerData{
-        [SerializeField] InventoryData _inventory;
+    public class PlayerData
+    {
+        [SerializeField] private InventoryData _inventory;
         public IntProperty Hp = new IntProperty();
         public bool _hasRange;
         public bool _hasMelee;

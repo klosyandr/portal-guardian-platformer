@@ -16470,22 +16470,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59eab468b5433d3458a8370ec61cb614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataTemp:
+  _data:
     _inventory:
       _inventory:
+      - Id: Coin
+        Value: 30
+      - Id: Charge
+        Value: 50
       - Id: Key
-        Value: 21
+        Value: 2
+      - Id: Projectile
+        Value: 20
     Hp:
-      _value: 10
+      _value: 100
     _hasRange: 1
     _hasMelee: 1
-  _dataStartLevel:
-    _inventory:
-      _inventory: []
-    Hp:
-      _value: 0
-    _hasRange: 0
-    _hasMelee: 0
 --- !u!4 &1669293429
 Transform:
   m_ObjectHideFlags: 0

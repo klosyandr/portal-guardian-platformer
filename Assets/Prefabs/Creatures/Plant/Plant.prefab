@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 2911473607984510881}
   - component: {fileID: 2911473607984510886}
   - component: {fileID: 2911473607984510887}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 2911473608040073486}
   - component: {fileID: 2911473608040073487}
   - component: {fileID: 2911473608040073484}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AttackMelee
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -575,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2911473609393056346}
   - component: {fileID: 2911473609393056325}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ProjectilePosition
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}

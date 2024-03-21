@@ -1,3 +1,5 @@
+using System;
+using PortalGuardian.Utils.Disposables;
 using UnityEngine;
 
 namespace PortalGuardian.Model.Data.Properties
@@ -21,5 +23,20 @@ namespace PortalGuardian.Model.Data.Properties
                 OnChanged?.Invoke(_value, oldValue);
             }
         }
+
+        public IDisposable Subscribe(OnPropertyChanged call)
+        {
+            OnChanged += call;
+            return new ActionDisposable(() => OnChanged -= call);
+        }
+
+        public IDisposable SubscribeAndInvoke(OnPropertyChanged call)
+        {
+            OnChanged += call;
+            var dispose = new ActionDisposable(() => OnChanged -= call);
+            call(_value, _value);
+            return dispose;
+        }
+
     }
 }

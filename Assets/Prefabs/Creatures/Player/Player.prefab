@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 215707024}
   - component: {fileID: 8943681224504462731}
   m_Layer: 11
-  m_Name: AttackAirPosition
+  m_Name: ThrowSpawnrPosition
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5568,6 +5568,7 @@ MonoBehaviour:
     _value: 0
   _hitParticles: {fileID: 3029539492143932351}
   _coinsToDispose: 5
+  _throwSpawner: {fileID: 8943681224504462731}
   _groundCheckPositionDelta: {x: -0.02, y: -0.31, z: 0}
   _groundCheckRadius: 0.19
 --- !u!114 &5835579023305529166
@@ -5583,6 +5584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 5
+  _maxHealth: 0
   _onDamage:
     m_PersistentCalls:
       m_Calls:
@@ -5691,7 +5693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a44c9d6e653e174fb85fb6e51ce7aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sourse: {fileID: 0}
   _sounds:
   - _id: Jump
     _clip: {fileID: 8300000, guid: 4534c19a1b525964d946b08df8256cf1, type: 3}

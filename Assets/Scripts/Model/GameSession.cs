@@ -7,14 +7,15 @@ namespace PortalGuardian.Model
 
     public class GameSession : MonoBehaviour
     {
-        [SerializeField] private PlayerData _dataTemp;        
-        [SerializeField] private PlayerData _dataStartLevel;
+        [SerializeField] private PlayerData _data;        
+        
+        private PlayerData _save;
 
-        public PlayerData Data => _dataTemp;        
+        public PlayerData Data => _data;   
+        public QuickInvenoryModel QuickInvenory { get; private set; }     
 
         private void Awake()
         {
-            LoadHud();
             if (IsSessionExist())
             {               
                 DestroyImmediate(gameObject);
@@ -22,8 +23,15 @@ namespace PortalGuardian.Model
             else
             {                            
                 DontDestroyOnLoad(this);
+                InitModels();
                 SaveStartData();
+                LoadHud();
             }
+        }
+
+        private void InitModels()
+        {
+            QuickInvenory = new QuickInvenoryModel(_data);
         }
 
         private void LoadHud()
@@ -46,12 +54,12 @@ namespace PortalGuardian.Model
 
         public void LoadStartData()
         {   
-            _dataTemp = _dataStartLevel.Clone();   
+            _data = _save.Clone();   
         }
 
         public void SaveStartData()
         {  
-            _dataStartLevel = _dataTemp.Clone();   
+            _save = _data.Clone();   
         }
     }
 }

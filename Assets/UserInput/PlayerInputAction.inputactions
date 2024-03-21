@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NextItem",
+                    "type": "Button",
+                    "id": "a5a0410f-58bc-4132-b452-7a74a80fa8a0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -203,6 +212,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a30841d-d5ad-4fcf-9cfe-ceef593934b9",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Control scheme",
+                    "action": "NextItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1749786889}
   - component: {fileID: 1749786890}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: FootStepsPosition
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 1782344856807967805}
   - component: {fileID: 5683495541063635425}
   - component: {fileID: 3344715147649088621}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 8413853160866521114}
   - component: {fileID: 8413853160866521124}
   - component: {fileID: 3006026968029476043}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 5411433791662572906}
   - component: {fileID: 4377853610276419840}
   - component: {fileID: 904107109466200971}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
