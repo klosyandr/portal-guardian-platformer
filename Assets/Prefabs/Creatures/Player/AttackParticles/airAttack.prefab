@@ -310,7 +310,7 @@ MonoBehaviour:
   _tag: 
   _layer:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 64
   _action:
     m_PersistentCalls:
       m_Calls:
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _invertX: 0
 --- !u!61 &357849800101885384
 BoxCollider2D:
   m_ObjectHideFlags: 0

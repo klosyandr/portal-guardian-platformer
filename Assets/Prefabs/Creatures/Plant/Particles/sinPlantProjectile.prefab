@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8546785941875028099}
   - component: {fileID: 1491185983834579367}
   - component: {fileID: 1985563344560938349}
+  - component: {fileID: 1606543353132119392}
   - component: {fileID: 3069424278893030858}
   - component: {fileID: -1307620934454159677}
   - component: {fileID: -323072913130919734}
@@ -180,6 +181,50 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PixelCrew.Component.ModifyHealthComponent, Assembly-CSharp
         m_MethodName: ApplyModify
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8546785941875028099}
+        m_TargetAssemblyTypeName: PixelCrew.Component.GoBased.DestroyObjectComponent,
+          Assembly-CSharp
+        m_MethodName: DestroyObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: destroy
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1606543353132119392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759329623672296530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc274fa4d86f614bb96a36858658a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tag: 
+  _layer:
+    serializedVersion: 2
+    m_Bits: 64
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1307620934454159677}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
