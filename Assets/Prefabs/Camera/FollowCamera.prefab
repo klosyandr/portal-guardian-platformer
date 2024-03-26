@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 815416774165788093}
   - component: {fileID: 815416774165788094}
   m_Layer: 0
-  m_Name: CM vcam1
+  m_Name: FollowCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4
+    OrthographicSize: 3.02
     NearClipPlane: 0.3
     FarClipPlane: 10
     Dutch: 0
