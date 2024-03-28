@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 namespace PortalGuardian.Component.GoBased
@@ -8,45 +10,53 @@ namespace PortalGuardian.Component.GoBased
     {
         [SerializeField] private int _minTotalCount;        
         [SerializeField] private int _maxTotalCount;
-        [SerializeField] private Drop[] _drops;
-        [SerializeField] private Transform _target;
+        [SerializeField] private DropData[] _drops;
+        [SerializeField] private DropEvent _onDropCalculated;
+        [SerializeField] private bool _spawnOnEnable;
 
+        private void OnEnable()
+        {
+            if (_spawnOnEnable)
+            {
+                CalculateDrop();
+            }
+        }
 
-        public void Drop()
+        [ContextMenu("CalculateDrop")]
+        public void CalculateDrop()
         {
             var count = Random.Range(_minTotalCount, _maxTotalCount);
+            var itemToDrop = new GameObject[count];
+            var itemCount = 0;
+            var total = _drops.Sum(dropData => dropData.Probability);
+            var sortedDrop = _drops.OrderBy(dropData => dropData.Probability);
 
-            float tempChance;
-            for (int i = 0; i < count; i++)
+            while (itemCount < count)
             {
-                tempChance = Random.Range(0f,1f);     
-
-                foreach (var drop in _drops)
+                var random = Random.value * total;
+                foreach (var dropData in sortedDrop)
                 {
-                    if (tempChance >= drop.LowChance && tempChance < drop.UpChance )
+                    if (dropData.Probability >= random)
                     {
-                        var instansiate = Instantiate(drop.Prefab, _target.position, Quaternion.identity);
-                        var rb = instansiate.GetComponent<Rigidbody2D>();
-                        rb.AddForce(new Vector2(Random.Range(-1f, 1f) * 15, Random.Range(1, 3) * 15), ForceMode2D.Impulse);    
+                        itemToDrop[itemCount] = dropData.Drop;
+                        itemCount++;
                         break;
                     }
                 }
             }
+
+            _onDropCalculated?.Invoke(itemToDrop);
         }
-    }
-    
-    [Serializable]
-    public class Drop
-    {
-        [SerializeField] private string _name;
-        [SerializeField] private GameObject _prefab;
-        [SerializeField] [Range(0, 1)] private float _lowСhance;
-        [SerializeField] [Range(0, 1)] private float _upСhance;
+        
+        [Serializable]
+        public class DropEvent : UnityEvent<GameObject[]>
+        {}
 
-
-        public string Name => _name;
-        public GameObject Prefab => _prefab;
-        public float UpChance => _upСhance;
-        public float LowChance => _lowСhance;
-    } 
+        [Serializable]
+        public class DropData
+        {
+            public GameObject Drop;
+            [Range(0f, 100f)] public float Probability;
+        } 
+    }    
 }

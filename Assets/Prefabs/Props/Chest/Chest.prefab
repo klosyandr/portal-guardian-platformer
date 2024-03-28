@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 659118059851685116}
   - component: {fileID: 659118059851685113}
   - component: {fileID: 659118059851685110}
-  - component: {fileID: 659118059851685111}
   - component: {fileID: 659118059851685108}
   m_Layer: 7
   m_Name: Chest
@@ -34,7 +33,8 @@ Transform:
   m_LocalPosition: {x: -1.0782022, y: -5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7950415476970717664}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -187,9 +187,10 @@ MonoBehaviour:
           m_StringArgument: open
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659118059851685111}
-        m_TargetAssemblyTypeName: PixelCrew.Component.GoBased.DropComponent, Assembly-CSharp
-        m_MethodName: Drop
+      - m_Target: {fileID: 7952970018558123019}
+        m_TargetAssemblyTypeName: PortalGuardian.Component.GoBased.DropComponent,
+          Assembly-CSharp
+        m_MethodName: CalculateDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -202,30 +203,6 @@ MonoBehaviour:
   _onFail:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &659118059851685111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659118059851685119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc73f33eff0eba4ca60155e059bce73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minTotalCount: 5
-  _maxTotalCount: 10
-  _drops:
-  - _name: 
-    _prefab: {fileID: 175604942585990817, guid: f9bc97a3233498d41a9cc172bddd0d17, type: 3}
-    "_low\u0421hance": 0
-    "_up\u0421hance": 0.75
-  - _name: 
-    _prefab: {fileID: 7589275166435560376, guid: b5af1e65145841849a43ca373cd4efa3, type: 3}
-    "_low\u0421hance": 0.75
-    "_up\u0421hance": 1
-  _target: {fileID: 659118059851685112}
 --- !u!114 &659118059851685108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +242,87 @@ MonoBehaviour:
     _onComplete:
       m_PersistentCalls:
         m_Calls: []
+--- !u!1 &4299339365231900356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7950415476970717664}
+  - component: {fileID: 7952970018558123019}
+  - component: {fileID: 1202977589201485741}
+  m_Layer: 7
+  m_Name: Drop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7950415476970717664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4299339365231900356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.418, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 659118059851685112}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7952970018558123019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4299339365231900356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc73f33eff0eba4ca60155e059bce73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minTotalCount: 5
+  _maxTotalCount: 10
+  _drops:
+  - Drop: {fileID: 7589275166435560376, guid: b5af1e65145841849a43ca373cd4efa3, type: 3}
+    Probability: 80
+  - Drop: {fileID: 175604942585990817, guid: f9bc97a3233498d41a9cc172bddd0d17, type: 3}
+    Probability: 20
+  _onDropCalculated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1202977589201485741}
+        m_TargetAssemblyTypeName: PortalGuardian.Component.GoBased.RandomSpawner,
+          Assembly-CSharp
+        m_MethodName: StartDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1202977589201485741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4299339365231900356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441d4d4ab4d28184287bd50cdd4e9bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sectorAngle: 60
+  _sectorRotation: 80
+  _waitTime: 0.1
+  _speed: 6

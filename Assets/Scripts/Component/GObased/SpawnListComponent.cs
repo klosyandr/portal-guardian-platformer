@@ -14,7 +14,15 @@ namespace PortalGuardian.Component.GoBased
            spawner?.Component.Spawn();
         }
 
+        public void SpawnAll()
+        {
+            foreach (var spawnData in _spawners)
+            {
+                spawnData?.Component.Spawn();
+            }
+        }
     }
+
 
     [Serializable]
     public class SpawnData

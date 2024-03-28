@@ -13,6 +13,7 @@ namespace PortalGuardian.Component.GoBased
         {
             var instansiate = Instantiate(_prefab, _target.position, Quaternion.identity);
             instansiate.transform.localScale = _target.lossyScale;
+            instansiate.SetActive(true);
         }
 
         public void SetPrefab(GameObject prefab)
