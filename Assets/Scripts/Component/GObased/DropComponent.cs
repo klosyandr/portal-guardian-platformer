@@ -33,10 +33,13 @@ namespace PortalGuardian.Component.GoBased
 
             while (itemCount < count)
             {
+                var current = 0f;
                 var random = Random.value * total;
+                
                 foreach (var dropData in sortedDrop)
                 {
-                    if (dropData.Probability >= random)
+                    current += dropData.Probability;
+                    if (current >= random)
                     {
                         itemToDrop[itemCount] = dropData.Drop;
                         itemCount++;
