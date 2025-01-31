@@ -22,7 +22,7 @@ namespace PortalGuardian.Creatures.Patrols
             {
                 if(IsOnPoint())
                 {
-                 _destinationPointIndex = (int) Mathf.Repeat(_destinationPointIndex + 1, _points.Length);
+                    _destinationPointIndex = (int) Mathf.Repeat(_destinationPointIndex + 1, _points.Length);
                 }
 
                 var direction = _points[_destinationPointIndex].position - transform.position;

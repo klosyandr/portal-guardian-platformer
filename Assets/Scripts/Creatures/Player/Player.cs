@@ -9,6 +9,10 @@ using UnityEditor;
 using UnityEngine;
 using PortalGuardian.Component.GoBased;
 using PortalGuardian.Model.Definitions;
+using PortalGuardian.Model.Definitions.Repositories.Items;
+using System.Linq;
+using PortalGuardian.Model.Definitions.Repositories;
+using System.Text.RegularExpressions;
 
 namespace PortalGuardian.Creatures.Player
 {
@@ -17,11 +21,14 @@ namespace PortalGuardian.Creatures.Player
         [SerializeField] private float _fallVelocity;
         [SerializeField] private CheckCircleOverlap _interactionCheck;
         [SerializeField] private LayerCheck _ladderCheck;
-          
-        [SerializeField] private Cooldown _throwAttackCooldown;
+        
+        [SerializeField] private Cooldown _throwCooldown;
         [SerializeField] private ParticleSystem _hitParticles;
         [SerializeField] private int _coinsToDispose = 5;
         [SerializeField] private SpawnComponent _throwSpawner;
+        
+        private Cooldown _speedUpCooldown = new Cooldown();
+        private float _additionalSpeed;
 
         [Space] [Header("For Gizmos")]
         [SerializeField] private Vector3 _groundCheckPositionDelta;
@@ -40,7 +47,7 @@ namespace PortalGuardian.Creatures.Player
         private int CoinsCount => _session.Data.Inventory.Count("Coin");        
         private int ChargeCount => _session.Data.Inventory.Count("Charge");
         private InventoryData Inventory => _session.Data.Inventory;
-        private string SelectedItemId =>_session.QuickInvenory.SelectedItem.Id;
+        private string SelectedItemId =>_session.QuickInventory.SelectedItem.Id;
 
         public void Start()
         {
@@ -129,10 +136,17 @@ namespace PortalGuardian.Creatures.Player
             _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
         
             _animator.SetBool(isGroundKey, _isGrounded);
-            _animator.SetBool(isRunKey, _direction.x !=0);
+            _animator.SetBool(isRunKey, _direction.x != 0);
             _animator.SetFloat(yVelocityKey, _rigidbody.velocity.y);
 
             UpdateSpriteDirection();
+        }
+
+        protected override float CalculateSpeed()
+        {
+            if (_speedUpCooldown.IsReady)
+                _additionalSpeed = 0f;
+            return base.CalculateSpeed() + _additionalSpeed;
         }
 
         protected override float CalculateYVelocity()
@@ -170,35 +184,61 @@ namespace PortalGuardian.Creatures.Player
             _session.Data.Inventory.Add(id, value);
         }
 
+        public void UseInventory()
+        {
+            if (IsSelectedItem(ItemTag.Potion))
+            {
+                UsePotion();
+            }
+        }
+
+        private bool IsSelectedItem(ItemTag tag)
+        {
+            return _session.QuickInventory.SelectedDef.HasTag(tag);
+        }
+
+        private void UsePotion()
+        {
+            var potion = DefsFacade.I.Potions.Get(SelectedItemId);
+            switch (potion.Effect)
+            {
+                case Effects.AddHP:
+                    _session.Data.Hp.Value += (int) potion.Value;
+                    break;
+                case Effects.SpeedUp:
+                    _speedUpCooldown.Value = _speedUpCooldown.TimeLasts + potion.Time;
+                    _additionalSpeed = Mathf.Max(potion.Value, _additionalSpeed);
+                    _speedUpCooldown.Reset();
+                    break;
+            }
+
+            _session.Data.Inventory.Remove(potion.Id, 1);
+        }
+
         public void DoThrowAttack()
         {
-           if (CheckThrowAttack()) ThrowAndRemoveFromInventory();
+           if (!_throwCooldown.IsReady || !_session.Data.HasMelee) return;
+           
+           ThrowAndRemoveFromInventory();
         }    
 
         public void DoThrowAttackSeries()
         { 
-            if (CheckThrowAttack()) StartCoroutine(ThrowAttackSeries());
+            if (!_throwCooldown.IsReady || !_session.Data.HasMelee) return;
+            
+            StartCoroutine(ThrowAttackSeries());
         }        
 
         private void ThrowAndRemoveFromInventory()
         {
-            _throwAttackCooldown.Reset();
+            _throwCooldown.Reset();
 
-            var trowableId = _session.QuickInvenory.SelectedItem.Id;
-            var trowableDef = DefsFacade.I.TrowableItems.Get(trowableId);
+            var trowableId = _session.ThrowInventory.SelectedItem.Id;
+            var trowableDef = DefsFacade.I.Trowable.Get(trowableId);
 
             _throwSpawner.SetPrefab(trowableDef.Projectile);
             PlayEffects("Melee");
             Inventory.Remove(trowableId, 1);
-        }
-
-        private bool CheckThrowAttack()
-        {
-            var def = DefsFacade.I.Items.Get(SelectedItemId);
-            if (!_session.Data._hasMelee) return false;
-            if (!_throwAttackCooldown.IsReady) return false;
-            
-            return def.HasTag(ItemTag.Throwable);
         }
         
         private IEnumerator ThrowAttackSeries ()
@@ -214,7 +254,7 @@ namespace PortalGuardian.Creatures.Player
 
         public void RangeAttack()
         {
-            if (!_session.Data._hasRange) return;
+            if (!_session.Data.HasRange) return;
 
             PlayEffects("Range");
             _attackRange.Check();
@@ -238,14 +278,6 @@ namespace PortalGuardian.Creatures.Player
             _interactionCheck.Check();
         }
 
-        public void Heal()
-        {
-            if (Inventory.Count("Potion") == 0) return;
-
-            _session.Data.Hp.Value += 5;
-            Inventory.Remove("Potion", 1);
-        }
-
         public void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.IsInLayer(_groundLayer)){
@@ -259,12 +291,12 @@ namespace PortalGuardian.Creatures.Player
 
         public void NextItem()
         {
-            _session.QuickInvenory.SetNextItem();
-        } 
+            _session.QuickInventory.SetNextItem();
+        }
 
-        public void OnChangeHealth(int newValue)
+        public void NextThrow()
         {
-            _session.Data.Hp.Value =  newValue;
+            _session.ThrowInventory.SetNextItem();
         }
 
         #if UNITY_EDITOR

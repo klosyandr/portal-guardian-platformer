@@ -10,8 +10,8 @@ namespace PortalGuardian.Model.Data
     {
         [SerializeField] private InventoryData _inventory;
         public IntProperty Hp = new IntProperty();
-        public bool _hasRange;
-        public bool _hasMelee;
+        public bool HasRange;
+        public bool HasMelee;
 
         public InventoryData Inventory => _inventory;
 

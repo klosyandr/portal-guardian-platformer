@@ -1,6 +1,7 @@
 using UnityEngine;
 using PortalGuardian.Creatures.Player;
 using PortalGuardian.Model.Definitions;
+using PortalGuardian.Model.Definitions.Repositories.Items;
 
 namespace PortalGuardian.Component.Collectable
 {

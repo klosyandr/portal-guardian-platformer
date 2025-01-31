@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: baacd7985ca84b045af8ae0f96ac1b5a, type: 3}
-  m_Name: TrowableItems
+  m_Name: Trowable
   m_EditorClassIdentifier: 
-  _items:
-  - _id: Charge
-    _projectile: {fileID: 8759329623672296530, guid: 454fbf7c9aadf2a47a078e85ce95c109, type: 3}
+  _collection:
   - _id: Projectile
     _projectile: {fileID: 8759329623672296530, guid: 20db0891f5eea6041af9003a0e935a04, type: 3}
+  - _id: Charge
+    _projectile: {fileID: 8759329623672296530, guid: 454fbf7c9aadf2a47a078e85ce95c109, type: 3}

@@ -1,4 +1,7 @@
+using Mono.Cecil;
 using PortalGuardian.Model.Data;
+using PortalGuardian.Model.Definitions.Repositories.Items;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +15,8 @@ namespace PortalGuardian.Model
         private PlayerData _save;
 
         public PlayerData Data => _data;   
-        public QuickInvenoryModel QuickInvenory { get; private set; }     
+        public QuickInventoryModel QuickInventory { get; private set; }
+        public QuickInventoryModel ThrowInventory { get; private set; }   
 
         private void Awake()
         {
@@ -31,7 +35,21 @@ namespace PortalGuardian.Model
 
         private void InitModels()
         {
-            QuickInvenory = new QuickInvenoryModel(_data);
+            QuickInventory = new QuickInventoryModel(_data, ItemTag.Usable);
+            ThrowInventory = new QuickInventoryModel(_data, ItemTag.Throwable);
+        }
+
+        public QuickInventoryModel GetInventory(ItemTag tag)
+        {
+            switch (tag)
+            {
+                case ItemTag.Usable:
+                    return QuickInventory;
+                case ItemTag.Throwable:
+                    return ThrowInventory;
+                default:
+                    return null;
+            }
         }
 
         private void LoadHud()
