@@ -21,7 +21,7 @@ namespace PortalGuardian.Creatures{
         protected bool _isGrounded; 
         protected bool _isJumping;
         protected Vector2 _direction; 
-        protected PlaySoundsComponent Sounds;
+        protected PlaySoundsComponent _sounds;
         
         protected static readonly int isGroundKey = Animator.StringToHash("is-ground");
         protected static readonly int yVelocityKey = Animator.StringToHash("y-velocity");
@@ -29,41 +29,53 @@ namespace PortalGuardian.Creatures{
         protected static readonly int hitKey = Animator.StringToHash("hit");
         protected static readonly int attackKey = Animator.StringToHash("attack");
 
-        protected virtual void Awake(){
+        protected virtual void Awake()
+        {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();    
-            Sounds = GetComponent<PlaySoundsComponent>();         
+            _sounds = GetComponent<PlaySoundsComponent>();         
         }
 
-        protected virtual void Update(){
+        protected virtual void Update()
+        {
             _isGrounded = _groundCheck.IsTouchingLayer;
         }
         
-        public void SetDirection(Vector2 direction){
+        public void SetDirection(Vector2 direction)
+        {
             _direction = direction;
         }
 
-        protected virtual void FixedUpdate(){
-            var xVelocity = _direction.x * _speed;
+        protected virtual void FixedUpdate()
+        {
+            var xVelocity = _direction.x * CalculateSpeed();
             var yVelocity = CalculateYVelocity();
             _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
         
             _animator.SetBool(isGroundKey, _isGrounded);
-            _animator.SetBool(isRunKey, _direction.x !=0);
+            _animator.SetBool(isRunKey, _direction.x != 0);
             _animator.SetFloat(yVelocityKey, _rigidbody.velocity.y);
 
             UpdateSpriteDirection();
         }
 
-        protected virtual float CalculateYVelocity(){
+        protected virtual float CalculateSpeed()
+        {
+            return _speed;
+        }
+
+        protected virtual float CalculateYVelocity()
+        {
             var yVelocity = _rigidbody.velocity.y;
             var isJumpPressing = _direction.y > 0;
             
-            if (_isGrounded) {
+            if (_isGrounded)
+            {
                 _isJumping = false;
             }
 
-            if (isJumpPressing){
+            if (isJumpPressing)
+            {
                 _isJumping = true;
 
                 var isFalling = _rigidbody.velocity.y <= 0.001f;
@@ -73,8 +85,10 @@ namespace PortalGuardian.Creatures{
             return yVelocity;
         }
 
-        protected virtual float CalculateJumpVelocity(float yVelocity){
-            if(_isGrounded){
+        protected virtual float CalculateJumpVelocity(float yVelocity)
+        {
+            if(_isGrounded)
+            {
                 yVelocity = _jumpSpeed;
                 _direction.y = 0;
                 PlayEffects("Jump");
@@ -82,32 +96,40 @@ namespace PortalGuardian.Creatures{
             return yVelocity; 
         }
         
-        protected void UpdateSpriteDirection(){
-            if (_direction.x > 0) {
+        protected void UpdateSpriteDirection()
+        {
+            if (_direction.x > 0)
+            {
                 transform.localScale = Vector3.one;
-            } else if(_direction.x < 0){
+            }
+            else if(_direction.x < 0)
+            {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
         }
 
-        protected virtual void TakeDamage(){
+        protected virtual void TakeDamage()
+        {
             _isJumping = false;
             _animator.SetTrigger(hitKey);
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageVelocity);
         }
 
-        public virtual void Attack(){
+        public virtual void Attack()
+        {
             _animator.SetTrigger(attackKey);
             PlayEffects("Range");
         }
 
-        public void OnDoAttack(){
+        public void OnDoAttack()
+        {
             _attackRange.Check();
         }
 
-        protected void PlayEffects(string id){
+        protected void PlayEffects(string id)
+        {
             _particles.Spawn(id);
-            Sounds.Play(id);
+            _sounds.Play(id);
         }
 
     }

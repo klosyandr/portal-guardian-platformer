@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55f5d3bd88635e149b589cee550955b0, type: 3}
-  m_Name: InventoryItems
+  m_Name: Items
   m_EditorClassIdentifier: 
-  _items:
+  _collection:
   - _id: Coin
     _icon: {fileID: -153303595, guid: bc5db4c26166f954e84ac4f850a05a82, type: 3}
     _tags: 0000000001000000
   - _id: Charge
     _icon: {fileID: 21300000, guid: 0320a1152c4863a4ab807f1b41d32f9c, type: 3}
-    _tags: 000000000100000002000000
+    _tags: 0000000002000000
   - _id: Key
     _icon: {fileID: 21300000, guid: 125a868b9ab0b9b4a91946c7df69a164, type: 3}
     _tags: 
-  - _id: Potion
-    _icon: {fileID: -1451970013, guid: 219d227a3aaa1aa42b479408819057b6, type: 3}
-    _tags: 
   - _id: Projectile
     _icon: {fileID: 21300000, guid: 7f5f22922f6e1cc499e84ad58ffaa426, type: 3}
-    _tags: 000000000100000002000000
+    _tags: 0000000002000000
+  - _id: SmallHealthPotion
+    _icon: {fileID: -1549138623, guid: 219d227a3aaa1aa42b479408819057b6, type: 3}
+    _tags: 000000000100000003000000
+  - _id: LargeHealthPotion
+    _icon: {fileID: 1163139002, guid: 219d227a3aaa1aa42b479408819057b6, type: 3}
+    _tags: 000000000100000003000000

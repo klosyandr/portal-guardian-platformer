@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using PortalGuardian.Model.Definitions;
+using PortalGuardian.Model.Definitions.Repositories.Items;
 using UnityEngine;
 
 namespace PortalGuardian.Model.Data

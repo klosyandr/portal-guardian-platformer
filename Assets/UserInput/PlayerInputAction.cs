@@ -28,7 +28,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             ""id"": ""66b93b9f-6a05-42e8-9c6c-39bd485b68f8"",
             ""actions"": [
                 {
-                    ""name"": ""FireAttack"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""30fdacfb-bc8a-40ed-a8d5-57e9c98fa50d"",
                     ""expectedControlType"": ""Button"",
@@ -37,7 +37,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AirAttack"",
+                    ""name"": ""Throw"",
                     ""type"": ""Button"",
                     ""id"": ""fa21ba8e-e2d4-4da0-adbe-53f4a3823de0"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Heal"",
+                    ""name"": ""UseInventory"",
                     ""type"": ""Button"",
                     ""id"": ""fd240bb3-5e52-4f6b-94ba-099b3b2e5db1"",
                     ""expectedControlType"": ""Button"",
@@ -80,6 +80,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextThrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""71558220-ad54-40b0-b708-524654a68240"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,7 +99,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FireAttack"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -222,18 +231,18 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": ""Press,Hold(duration=1.5)"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AirAttack"",
+                    ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""13e1f372-8947-4ed2-9039-d488af6e7fd1"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Heal"",
+                    ""action"": ""UseInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -245,6 +254,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Control scheme"",
                     ""action"": ""NextItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""626835ef-b290-4e66-84d3-c24cba54cb3f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Control scheme"",
+                    ""action"": ""NextThrow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -272,12 +292,13 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_FireAttack = m_Player.FindAction("FireAttack", throwIfNotFound: true);
-        m_Player_AirAttack = m_Player.FindAction("AirAttack", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_UseInventory = m_Player.FindAction("UseInventory", throwIfNotFound: true);
         m_Player_NextItem = m_Player.FindAction("NextItem", throwIfNotFound: true);
+        m_Player_NextThrow = m_Player.FindAction("NextThrow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,22 +360,24 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_FireAttack;
-    private readonly InputAction m_Player_AirAttack;
+    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_UseInventory;
     private readonly InputAction m_Player_NextItem;
+    private readonly InputAction m_Player_NextThrow;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @FireAttack => m_Wrapper.m_Player_FireAttack;
-        public InputAction @AirAttack => m_Wrapper.m_Player_AirAttack;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Throw => m_Wrapper.m_Player_Throw;
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        public InputAction @UseInventory => m_Wrapper.m_Player_UseInventory;
         public InputAction @NextItem => m_Wrapper.m_Player_NextItem;
+        public InputAction @NextThrow => m_Wrapper.m_Player_NextThrow;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -364,46 +387,52 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @FireAttack.started += instance.OnFireAttack;
-            @FireAttack.performed += instance.OnFireAttack;
-            @FireAttack.canceled += instance.OnFireAttack;
-            @AirAttack.started += instance.OnAirAttack;
-            @AirAttack.performed += instance.OnAirAttack;
-            @AirAttack.canceled += instance.OnAirAttack;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @Heal.started += instance.OnHeal;
-            @Heal.performed += instance.OnHeal;
-            @Heal.canceled += instance.OnHeal;
+            @UseInventory.started += instance.OnUseInventory;
+            @UseInventory.performed += instance.OnUseInventory;
+            @UseInventory.canceled += instance.OnUseInventory;
             @NextItem.started += instance.OnNextItem;
             @NextItem.performed += instance.OnNextItem;
             @NextItem.canceled += instance.OnNextItem;
+            @NextThrow.started += instance.OnNextThrow;
+            @NextThrow.performed += instance.OnNextThrow;
+            @NextThrow.canceled += instance.OnNextThrow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @FireAttack.started -= instance.OnFireAttack;
-            @FireAttack.performed -= instance.OnFireAttack;
-            @FireAttack.canceled -= instance.OnFireAttack;
-            @AirAttack.started -= instance.OnAirAttack;
-            @AirAttack.performed -= instance.OnAirAttack;
-            @AirAttack.canceled -= instance.OnAirAttack;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @Heal.started -= instance.OnHeal;
-            @Heal.performed -= instance.OnHeal;
-            @Heal.canceled -= instance.OnHeal;
+            @UseInventory.started -= instance.OnUseInventory;
+            @UseInventory.performed -= instance.OnUseInventory;
+            @UseInventory.canceled -= instance.OnUseInventory;
             @NextItem.started -= instance.OnNextItem;
             @NextItem.performed -= instance.OnNextItem;
             @NextItem.canceled -= instance.OnNextItem;
+            @NextThrow.started -= instance.OnNextThrow;
+            @NextThrow.performed -= instance.OnNextThrow;
+            @NextThrow.canceled -= instance.OnNextThrow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -432,11 +461,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnFireAttack(InputAction.CallbackContext context);
-        void OnAirAttack(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnHeal(InputAction.CallbackContext context);
+        void OnUseInventory(InputAction.CallbackContext context);
         void OnNextItem(InputAction.CallbackContext context);
+        void OnNextThrow(InputAction.CallbackContext context);
     }
 }

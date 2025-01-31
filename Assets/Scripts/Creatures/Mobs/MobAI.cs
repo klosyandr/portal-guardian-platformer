@@ -16,7 +16,7 @@ namespace PortalGuardian.Creatures.Mobs
         [SerializeField] private float _attackCoolDown = 1f;
         [SerializeField] private float _missCoolDown = 1f;
 
-        private Coroutine _current;
+        private IEnumerator _current;
         private GameObject _target;
         private SpawnListComponent _particles;
         private Creature _creature;
@@ -42,10 +42,12 @@ namespace PortalGuardian.Creatures.Mobs
         {            
             _creature.SetDirection(Vector2.zero);
 
-            if (_current != null){
+            if (_current != null)
+            {
                 StopCoroutine(_current);
             }
-            _current = StartCoroutine(coroutine);
+            _current = coroutine;
+            StartCoroutine(coroutine);
         }
 
 
@@ -57,7 +59,7 @@ namespace PortalGuardian.Creatures.Mobs
             StartState(AgroToHero());
         }
 
-        private IEnumerator AgroToHero ()
+        private IEnumerator AgroToHero()
         {
             LookAtHero();
             _particles.Spawn("Exclamation");
