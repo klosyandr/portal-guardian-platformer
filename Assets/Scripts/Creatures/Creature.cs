@@ -3,7 +3,8 @@ using PortalGuardian.Component.ColliderBase;
 using PortalGuardian.Component.GoBased;
 using UnityEngine;
 
-namespace PortalGuardian.Creatures{
+namespace PortalGuardian.Creatures
+{
     public class Creature : MonoBehaviour
     {
         [Header("Params")]

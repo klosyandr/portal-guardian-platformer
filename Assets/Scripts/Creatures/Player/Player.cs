@@ -10,9 +10,7 @@ using UnityEngine;
 using PortalGuardian.Component.GoBased;
 using PortalGuardian.Model.Definitions;
 using PortalGuardian.Model.Definitions.Repositories.Items;
-using System.Linq;
 using PortalGuardian.Model.Definitions.Repositories;
-using System.Text.RegularExpressions;
 
 namespace PortalGuardian.Creatures.Player
 {
@@ -166,7 +164,7 @@ namespace PortalGuardian.Creatures.Player
                 _direction.y = 0; 
                 PlayEffects("Jump"); 
                 return _jumpSpeed;
-            }    
+            }
             return base.CalculateJumpVelocity(yVelocity);      
         }
 
