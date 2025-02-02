@@ -1,6 +1,5 @@
 using UnityEngine;
 using PortalGuardian.Creatures.Player;
-using PortalGuardian.Model.Definitions;
 using PortalGuardian.Model.Definitions.Repositories.Items;
 
 namespace PortalGuardian.Component.Collectable
@@ -12,8 +11,8 @@ namespace PortalGuardian.Component.Collectable
 
         public void Modify(GameObject go)
         {    
-            var player = go.GetComponent<Player>();
-            player.AddInInventory(_id, _value);
+            var hero = go.GetComponent<Hero>();
+            hero.AddInInventory(_id, _value);
         }
     }
 }

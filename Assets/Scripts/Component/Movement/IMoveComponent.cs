@@ -23,6 +23,7 @@ namespace PortalGuardian.Creatures
         public float AdditionalSpeed 
         {
             set { _additionalSpeed = value; }
+            get { return _additionalSpeed; }
         }
 
         protected void Awake()
