@@ -22,8 +22,8 @@ namespace PortalGuardian.UI
         public void Start()
         {
             var session = FindObjectOfType<GameSession>();
-            var model = session.GetInventory(_tag);
-            model.SelectedIndex.SubscribeAndInvoke(OnIndexChanged);
+            var index = session.GetInventory(_tag).SelectedIndex;
+            _trash.Retain(index.SubscribeAndInvoke(OnIndexChanged));
         }
 
         private void OnIndexChanged(int newValue, int _)
@@ -39,5 +39,9 @@ namespace PortalGuardian.UI
             _value.text = def.HasTag(_tag) ? $"x{item.Value.ToString()}" : string.Empty;
         }
 
+        private void Destroy()
+        {
+            _trash.Dispose();
+        }
     }
 }

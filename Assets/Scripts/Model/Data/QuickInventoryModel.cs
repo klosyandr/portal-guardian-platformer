@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace PortalGuardian.Model.Data
 {
-    public class QuickInventoryModel
+    public class QuickInventoryModel : IDisposable
     {
         private readonly PlayerData _data;
         private readonly ItemTag _tag;
@@ -39,13 +39,9 @@ namespace PortalGuardian.Model.Data
 
         private void OnChangedInventory(string id, int value)
         {
-            var indexFound = Array.FindIndex(Inventory, x => x.Id == id);
-            if (indexFound != -1)
-            {                 
-                Inventory = _data.Inventory.GetAll(_tag);
-                SelectedIndex.Value = Mathf.Clamp(SelectedIndex.Value, 0, Inventory.Length - 1);
-                OnChanged?.Invoke();
-            }
+            Inventory = _data.Inventory.GetAll(_tag);
+            SelectedIndex.Value = Mathf.Clamp(SelectedIndex.Value, 0, Inventory.Length - 1);
+            OnChanged?.Invoke();
         } 
 
         public void SetNextItem()
@@ -57,6 +53,11 @@ namespace PortalGuardian.Model.Data
         {    
             OnChanged += call;
             return new ActionDisposable(() => OnChanged -= call);
+        }
+
+        public void Dispose()
+        {
+            _data.Inventory.OnChanged -= OnChangedInventory;
         }
     }
 }

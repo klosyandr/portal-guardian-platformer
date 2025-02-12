@@ -1,6 +1,7 @@
 using Mono.Cecil;
 using PortalGuardian.Model.Data;
 using PortalGuardian.Model.Definitions.Repositories.Items;
+using PortalGuardian.Utils.Disposables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,9 +15,11 @@ namespace PortalGuardian.Model
         
         private PlayerData _save;
 
-        public PlayerData Data => _data;   
+        private readonly CompositeDisposable _trash = new CompositeDisposable();
+
+        public PlayerData Data => _data;
         public QuickInventoryModel QuickInventory { get; private set; }
-        public QuickInventoryModel ThrowInventory { get; private set; }   
+        public QuickInventoryModel ThrowInventory { get; private set; }
 
         private void Awake()
         {
@@ -37,6 +40,8 @@ namespace PortalGuardian.Model
         {
             QuickInventory = new QuickInventoryModel(_data, ItemTag.Usable);
             ThrowInventory = new QuickInventoryModel(_data, ItemTag.Throwable);
+            _trash.Retain(QuickInventory);
+            _trash.Retain(ThrowInventory);
         }
 
         public QuickInventoryModel GetInventory(ItemTag tag)
@@ -78,6 +83,11 @@ namespace PortalGuardian.Model
         public void SaveStartData()
         {  
             _save = _data.Clone();   
+        }
+
+        private void Oestroy()
+        {
+            _trash.Dispose();
         }
     }
 }
