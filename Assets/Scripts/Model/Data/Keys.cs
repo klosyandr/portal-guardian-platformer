@@ -13,6 +13,7 @@ namespace PortalGuardian.Model.Data
         public static readonly int HIT = Animator.StringToHash("hit");
         public static readonly int ATTACK = Animator.StringToHash("attack");
         public static readonly int IS_DEAD = Animator.StringToHash("is-dead");
+        public static readonly int IS_OPEN = Animator.StringToHash("is-open");
     
     }
     
