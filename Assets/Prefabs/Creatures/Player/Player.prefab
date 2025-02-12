@@ -5180,9 +5180,9 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1684657865810541081}
-        m_TargetAssemblyTypeName: PixelCrew.Creatures.Player, Assembly-CSharp
-        m_MethodName: GetPointLadder
+      - m_Target: {fileID: 3726464199233418830}
+        m_TargetAssemblyTypeName: PortalGuardian.Creatures.LadderMoveComponent, Assembly-CSharp
+        m_MethodName: SetPointLadder
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5346,15 +5346,17 @@ GameObject:
   - component: {fileID: 8413853160872376569}
   - component: {fileID: 8413853160872376568}
   - component: {fileID: 8413853160872376572}
+  - component: {fileID: 8413853160872376574}
   - component: {fileID: 8413853160872376563}
   - component: {fileID: 8413853160872376562}
   - component: {fileID: 8413853160872376573}
-  - component: {fileID: 8413853160872376574}
   - component: {fileID: 1684657865810541081}
   - component: {fileID: 5835579023305529166}
   - component: {fileID: 6463046170284752601}
   - component: {fileID: 8736092474131815073}
   - component: {fileID: 3579329255884602477}
+  - component: {fileID: 6065799883818827879}
+  - component: {fileID: 3726464199233418830}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -5469,6 +5471,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8413853160872376574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413853160872376571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30332b31ca0753e4f8716391da81e31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 1684657865810541081}
 --- !u!95 &8413853160872376563
 Animator:
   serializedVersion: 5
@@ -5527,19 +5542,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.012346119, y: -0.18225539}
   m_Size: {x: 0.54752856, y: 0.6452787}
   m_Direction: 0
---- !u!114 &8413853160872376574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8413853160872376571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30332b31ca0753e4f8716391da81e31a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1684657865810541081}
 --- !u!114 &1684657865810541081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5552,25 +5554,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc67a1bb1745ff4f93810a4954f4fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _jumpSpeed: 10
   _damageVelocity: 7
+  _attackRange: {fileID: 1815542117170674730}
+  _particles: {fileID: 8736092474131815073}
+  _simpleMove: {fileID: 6065799883818827879}
+  _ladderMove: {fileID: 3726464199233418830}
+  _fallVelocity: 10
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _groundCheck: {fileID: 8413853160866521124}
-  _attackRange: {fileID: 1815542117170674730}
-  _particles: {fileID: 8736092474131815073}
-  _fallVelocity: 10
   _interactionCheck: {fileID: 4930986177232698406}
-  _ladderCheck: {fileID: 5722593188720553042}
-  _meleeAttackCooldown:
+  _groundCheckPositionDelta: {x: -0.02, y: -0.31, z: 0}
+  _groundCheckRadius: 0.19
+  _throwCooldown:
     _value: 0
   _hitParticles: {fileID: 3029539492143932351}
   _coinsToDispose: 5
   _throwSpawner: {fileID: 8943681224504462731}
-  _groundCheckPositionDelta: {x: -0.02, y: -0.31, z: 0}
-  _groundCheckRadius: 0.19
 --- !u!114 &5835579023305529166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5634,9 +5634,10 @@ MonoBehaviour:
   _onChange:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1684657865810541081}
-        m_TargetAssemblyTypeName: PixelCrew.Creatures.Player, Assembly-CSharp
-        m_MethodName: OnChangeHealth
+      - m_Target: {fileID: 5835579023305529166}
+        m_TargetAssemblyTypeName: PortalGuardian.Component.Health.HealthComponent,
+          Assembly-CSharp
+        m_MethodName: SetHealth
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5702,6 +5703,41 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: 30925e7a53f62674998c75d767bdc6d5, type: 3}
   - _id: Hurt
     _clip: {fileID: 8300000, guid: 7bdcd6feb0c82114cb66959896f2a2b1, type: 3}
+--- !u!114 &6065799883818827879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413853160872376571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b73d2787187eb428074d551f20ebd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
+  _jumpSpeed: 10
+  _hasHorizontal: 1
+  _hasVertical: 1
+  _hasDoubleJump: 1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _groundCheck: {fileID: 8413853160866521124}
+--- !u!114 &3726464199233418830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413853160872376571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102407be92723d041a3509b7be5e6430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _ladderCheck: {fileID: 5722593188720553042}
 --- !u!1 &8899291587996961369
 GameObject:
   m_ObjectHideFlags: 0

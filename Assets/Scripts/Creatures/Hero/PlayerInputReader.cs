@@ -5,7 +5,7 @@ namespace PortalGuardian.Creatures.Player
 {
     public class PlayerInputReader : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private Hero _player;
 
         public void OnMove(InputValue context)
         {

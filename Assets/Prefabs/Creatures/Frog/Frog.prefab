@@ -527,6 +527,7 @@ GameObject:
   - component: {fileID: 6971118181230210003}
   - component: {fileID: 3173934979611906771}
   - component: {fileID: 1338912905554460356}
+  - component: {fileID: 7076652449933375123}
   m_Layer: 10
   m_Name: Frog
   m_TagString: Enemy
@@ -680,15 +681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3661e1838838c7d49aa2789fc4e05d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.6
-  _jumpSpeed: 0
   _damageVelocity: 5
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _groundCheck: {fileID: 8413853160866521124}
   _attackRange: {fileID: 1815542117170674730}
   _particles: {fileID: 8736092474131815073}
+  _simpleMove: {fileID: 7076652449933375123}
 --- !u!114 &5835579023305529166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,6 +938,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sounds: []
+--- !u!114 &7076652449933375123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413853160872376571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b73d2787187eb428074d551f20ebd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 2
+  _jumpSpeed: 0
+  _hasHorizontal: 1
+  _hasVertical: 0
+  _hasDoubleJump: 0
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _groundCheck: {fileID: 8413853160866521124}
 --- !u!1 &8849768509287350184
 GameObject:
   m_ObjectHideFlags: 0
