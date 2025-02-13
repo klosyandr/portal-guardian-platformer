@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 659118059851685113}
   - component: {fileID: 659118059851685110}
   - component: {fileID: 659118059851685108}
+  - component: {fileID: 716002908131864516}
   m_Layer: 7
   m_Name: Chest
   m_TagString: Interactable
@@ -202,7 +203,20 @@ MonoBehaviour:
         m_CallState: 2
   _onFail:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 716002908131864516}
+        m_TargetAssemblyTypeName: PortalGuardian.Component.Dialogs.ShowDialogComponent,
+          Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &659118059851685108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +256,24 @@ MonoBehaviour:
     _onComplete:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &716002908131864516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659118059851685119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768a9b143a036014e8fb40c719ae049a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mode: 0
+  _bound:
+    _sentences:
+    - You need key...
+    - Try to search key
+  _external: {fileID: 0}
 --- !u!1 &4299339365231900356
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +342,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _spawnOnEnable: 0
 --- !u!114 &1202977589201485741
 MonoBehaviour:
   m_ObjectHideFlags: 0
