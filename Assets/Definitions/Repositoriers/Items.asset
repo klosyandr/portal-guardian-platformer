@@ -31,3 +31,6 @@ MonoBehaviour:
   - _id: LargeHealthPotion
     _icon: {fileID: 1163139002, guid: 219d227a3aaa1aa42b479408819057b6, type: 3}
     _tags: 000000000100000003000000
+  - _id: BlueGem
+    _icon: {fileID: -385194167, guid: 6144e7ced30177c4dbb9e13c9718cb8a, type: 3}
+    _tags: 0000000001000000

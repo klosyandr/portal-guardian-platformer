@@ -12,6 +12,7 @@ namespace PortalGuardian.Component.Dialogs
         [SerializeField] private DialogDef _external;
 
         private DialogBoxController _dialogBox;
+
         public void Show()
         {
             if (_dialogBox == null)
@@ -19,6 +20,12 @@ namespace PortalGuardian.Component.Dialogs
                 _dialogBox = FindObjectOfType<DialogBoxController>();
             }
             _dialogBox.ShowDialog(Data);
+        }
+
+        public void Show(DialogDef def)
+        {
+            _external = def;
+            Show();
         }
 
         public DialogData Data
